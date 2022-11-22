@@ -1,5 +1,6 @@
 package com.ejer;
 
+import com.ejer.hibernate.conexion.ConexionBaseDatos;
 import com.ejer.hibernate.entity.Cliente;
 
 import javax.persistence.EntityManager;
@@ -8,37 +9,31 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
 public class TestSystem {
-    private static EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence.createEntityManagerFactory("persistencia");
+
 
     public static void main(String[] args) {
-        System.out.println("aqui");
-        insertarCliente("12312322B","Paco","Gonzalez");
-
-        ENTITY_MANAGER_FACTORY.close();
     }
 
-    public static void insertarCliente(String dni, String nombre, String primerApellido) {
-        EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
-        EntityTransaction et = null;
+    public static void insertarCliente(Cliente cliente) {
+        EntityManager entityManager = ConexionBaseDatos.getInstance().getEntityManager();
+        EntityTransaction transaction = null;
         try {
-            et = em.getTransaction();
-            et.begin();
-            Cliente cliente = new Cliente();
-            cliente.setDniCliente(dni);
-            cliente.setNombreCliente(nombre);
-            cliente.setPrimerApellidoCliente(primerApellido);
-            em.persist(cliente);
-            et.commit();
+            transaction = entityManager.getTransaction();
+            transaction.begin();
+
+            entityManager.persist(cliente);
+
+            transaction.commit();
 
 
         } catch (Exception e) {
-            if(et != null) {
-                et.rollback();
+            if(transaction != null) {
+                transaction.rollback();
             }
-            e.printStackTrace();
+            //e.printStackTrace();
         }
         finally {
-            em.close();
+            entityManager.close();
         }
     }
 }

@@ -10,16 +10,17 @@ public class Cliente implements Serializable{
     private static final long serialVersionUID = 1L;
 
     /**
-     * Constructor utilizado por Hibernate
+     * Constructor sin parámetros utilizado por Hibernate
      */
     public Cliente() {
     }
 
-    public Cliente(String nombre, String primerApellido, String segundoApellido) {
+    public Cliente(String dni, String nombre, String primerApellido, String segundoApellido) {
+        this.dniCliente = dni;
         this.nombreCliente = nombre;
         this.primerApellidoCliente = primerApellido;
         this.segundoApellidoCliente = segundoApellido;
-        //Tambien la fecha, comprobar lo que hace la base de datos
+        //fecha
     }
 
     @Id
@@ -27,16 +28,23 @@ public class Cliente implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idCliente;
 
-    @Column(name = "dniCliente", nullable = false)
+    @Column(name = "dniCliente",
+            length = 9,
+            unique = true,
+            nullable = false)
     private String dniCliente;
 
-    @Column(name = "nombreCliente", nullable = false)
+    @Column(name = "nombreCliente",
+            length = 45,
+            nullable = false)
     private String nombreCliente;
 
-    @Column(name = "primerApellidoCliente", nullable = false)
+    @Column(name = "primerApellidoCliente",
+            length = 45, nullable = false)
     private String primerApellidoCliente;
 
-    @Column(name = "segundoApellidoCliente")
+    @Column(name = "segundoApellidoCliente",
+            length = 45)
     private String segundoApellidoCliente;
 
     //datetime en la base de datos
