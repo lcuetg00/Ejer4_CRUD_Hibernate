@@ -20,6 +20,7 @@ public class ConexionBaseDatos {
     private EntityManagerFactory entityManagerFactory;
     /**
      * Contiene el nombre de la unidad de permanencia que utilizará la base de datos, almacenado en persistence.xml
+     * Valor por defecto: 'persistencia'
      */
     private String unidadPersistencia = "persistencia";
 
@@ -28,6 +29,15 @@ public class ConexionBaseDatos {
      * Creado para prevenir que desde fuera se creen instancias de esta clase (solo existirá 1 instancia, siguiendo el patrón Singleton)
      */
     private ConexionBaseDatos() {
+    }
+
+    /**
+     * Crea una conexión con la base de datos a través del EntityManagerFactory, utilizando la variable unidadPersistencia de esta clase
+     */
+    public void crearConexion() {
+        if(unidadPersistencia == null) {
+            throw new NullPointerException("Clase ConexionBaseDatos: unidadPersistencia es null");
+        }
         this.entityManagerFactory = Persistence.createEntityManagerFactory(unidadPersistencia);
     }
 
@@ -56,4 +66,9 @@ public class ConexionBaseDatos {
     public void cerrarConexion() {
         this.entityManagerFactory.close();
     }
+
+    public void setUnidadPersistencia(String unidadPersistencia) {
+        this.unidadPersistencia = unidadPersistencia;
+    }
+
 }

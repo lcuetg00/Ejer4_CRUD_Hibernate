@@ -24,13 +24,20 @@ public class ClienteDao implements IOperacionesDao<Cliente>{
     /**
      * Inserta un elemento de tipo 'Cliente' en la tabla 'cliente'
      * @param cliente
+     * @throws IllegalArgumentException
      */
-    public void insertarElemento(Cliente cliente) {
+    public void insertarElemento(Cliente cliente) throws IllegalArgumentException {
+        if(cliente == null) {
+            throw new IllegalArgumentException();
+        }
         EntityManager entityManager = ConexionBaseDatos.getInstance().getEntityManager();
         EntityTransaction transaction = null;
         try {
             transaction = entityManager.getTransaction();
             transaction.begin();
+
+            //validar que no hay un cliente con el mismo dni
+            //si lo hay, lanza SQLIntegrityConstraintViolationException
 
             entityManager.persist(cliente);
 
@@ -40,7 +47,8 @@ public class ClienteDao implements IOperacionesDao<Cliente>{
             if(transaction != null) {
                 transaction.rollback();
             }
-            //e.printStackTrace();
+            e.printStackTrace();
+            throw e;
         }
         finally {
             entityManager.close();
@@ -51,7 +59,40 @@ public class ClienteDao implements IOperacionesDao<Cliente>{
      * Elimina un elemento de tipo 'Cliente' en la tabla 'cliente'
      * @param cliente
      */
-    public void eliminarElemento(Cliente cliente) {
+    public void eliminarElemento(Cliente cliente) throws IllegalArgumentException {
+        if(cliente == null) {
+            throw new IllegalArgumentException();
+        }
 
+    }
+
+    public Cliente getCliente(String dni) throws IllegalArgumentException {
+        if(dni == null) {
+            throw new IllegalArgumentException();
+        }
+        EntityManager entityManager = ConexionBaseDatos.getInstance().getEntityManager();
+        String query = "SELECT c FROM cliente WHERE c.dni = :dniCliente";
+        // Player p = entityManager.find(Player.class, key);
+        try {
+
+
+        return null;
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+            throw e;
+        }
+        finally {
+            entityManager.close();
+        }
+    }
+
+
+    public boolean comprobarExisteClienteBaseDeDatos(String dni) throws IllegalArgumentException {
+        if(dni == null) {
+            throw new IllegalArgumentException();
+        }
+        return false;
     }
 }

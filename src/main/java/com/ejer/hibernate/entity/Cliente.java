@@ -1,6 +1,7 @@
 package com.ejer.hibernate.entity;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 import javax.persistence.*;
 
@@ -15,18 +16,18 @@ public class Cliente implements Serializable{
     public Cliente() {
     }
 
-    public Cliente(String dni, String nombre, String primerApellido, String segundoApellido) {
+    public Cliente(String dni, String nombre, String primerApellido, String segundoApellido, LocalDateTime fechaAltaCliente) {
         this.dniCliente = dni;
         this.nombreCliente = nombre;
         this.primerApellidoCliente = primerApellido;
         this.segundoApellidoCliente = segundoApellido;
-        //fecha
+        this.fechaAltaCliente = fechaAltaCliente;
     }
 
     @Id
     @Column(name = "idCliente")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long idCliente;
+    private int idCliente;
 
     @Column(name = "dniCliente",
             length = 9,
@@ -49,13 +50,13 @@ public class Cliente implements Serializable{
 
     //datetime en la base de datos
     @Column(name = "fechaAltaCliente")
-    private Date fechaAltaCliente;
+    private LocalDateTime fechaAltaCliente;
 
     public long getIdCliente() {
         return idCliente;
     }
 
-    public void setIdCliente(long idCliente) {
+    public void setIdCliente(int idCliente) {
         this.idCliente = idCliente;
     }
 
@@ -83,11 +84,11 @@ public class Cliente implements Serializable{
         this.segundoApellidoCliente = segundoApellidoCliente;
     }
 
-    public Date getFechaAltaCliente() {
+    public LocalDateTime getFechaAltaCliente() {
         return fechaAltaCliente;
     }
 
-    public void setFechaAltaCliente(Date fechaAltaCliente) {
+    public void setFechaAltaCliente(LocalDateTime fechaAltaCliente) {
         this.fechaAltaCliente = fechaAltaCliente;
     }
 
@@ -97,5 +98,9 @@ public class Cliente implements Serializable{
 
     public void setDniCliente(String dniCliente) {
         this.dniCliente = dniCliente;
+    }
+
+    public String toString() {
+        return null;
     }
 }
