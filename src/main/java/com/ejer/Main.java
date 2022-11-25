@@ -15,10 +15,7 @@ public class Main {
         //} catch
         //No se ha podido abrir conexion
 
-
         //Consola consola = new Consola();
-        ClienteDao a = new ClienteDao();
-        a.insertarElemento(new Cliente("33312312A", "AAA", "GonzFFFalo", null, LocalDateTime.now()));
         ConexionBaseDatos.getInstance().cerrarConexion();
     }
 }

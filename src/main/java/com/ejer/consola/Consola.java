@@ -107,10 +107,6 @@ public class Consola {
     public void imprimirMenu() {
         System.out.println("_____________________________________________________________________");
         System.out.println("1) Insertar cliente");
-        System.out.println("2) Restar");
-        System.out.println("3) Multiplicar");
-        System.out.println("4) Dividir");
-        System.out.println("5) Modulo");
         System.out.println("6) Salir");
         System.out.println("_____________________________________________________________________");
     }

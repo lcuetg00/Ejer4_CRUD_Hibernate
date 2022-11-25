@@ -67,7 +67,7 @@ public class ConexionBaseDatos {
         this.entityManagerFactory.close();
     }
 
-    public void setUnidadPersistencia(String unidadPersistencia) {
+    public void setUnidadPersistencia(final String unidadPersistencia) {
         this.unidadPersistencia = unidadPersistencia;
     }
 

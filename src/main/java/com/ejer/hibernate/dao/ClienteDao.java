@@ -99,7 +99,6 @@ public class ClienteDao implements IOperacionesDao<Cliente>{
             throw new IllegalArgumentException();
         }
 
-
     }
 
     public Cliente getCliente(String dni) throws IllegalArgumentException, NoSuchElementException {
@@ -131,6 +130,21 @@ public class ClienteDao implements IOperacionesDao<Cliente>{
         if(dni == null) {
             throw new IllegalArgumentException();
         }
-        return false;
+        EntityManager entityManager = ConexionBaseDatos.getInstance().getEntityManager();
+        String query = "SELECT c FROM Cliente WHERE c.dniCliente = :dni";
+        TypedQuery<Cliente> typedQuery = entityManager.createQuery(query, Cliente.class);
+        List<Cliente> clientes;
+        try {
+            Cliente cliente = typedQuery.getSingleResult();
+            return true;
+
+        } catch (NoSuchElementException e) {
+            //No existe ese cliente
+            return false;
+        }
+        finally {
+            entityManager.close();
+        }
+
     }
 }

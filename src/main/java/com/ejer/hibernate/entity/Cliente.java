@@ -2,11 +2,13 @@ package com.ejer.hibernate.entity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Date;
 import javax.persistence.*;
 
 @Entity
 @Table(name = "cliente")
+/**
+ * Entidad Cliente
+ */
 public class Cliente implements Serializable{
     private static final long serialVersionUID = 1L;
 
@@ -51,6 +53,9 @@ public class Cliente implements Serializable{
     //datetime en la base de datos
     @Column(name = "fechaAltaCliente")
     private LocalDateTime fechaAltaCliente;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    private Registrado tipoRegistrado;
 
     public long getIdCliente() {
         return idCliente;
