@@ -82,7 +82,6 @@ public class ClienteDao implements IOperacionesDao<Cliente>{
             if(transaction != null) {
                 transaction.rollback();
             }
-            e.printStackTrace();
             throw e;
         }
         finally {
