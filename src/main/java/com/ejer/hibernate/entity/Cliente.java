@@ -101,6 +101,14 @@ public class Cliente implements Serializable{
     }
 
     public String toString() {
-        return null;
+        StringBuilder caracteristicas = new StringBuilder();
+        caracteristicas.append("Cliente: ");
+        caracteristicas.append("DNI: " + this.dniCliente + " | ");
+        caracteristicas.append("Nombre: " + this.nombreCliente + " | ");
+        caracteristicas.append("Primer Apellido: " + this.primerApellidoCliente + " | ");
+        caracteristicas.append("Segundo Apellido: " + ((this.segundoApellidoCliente) != null ? this.segundoApellidoCliente : "Null") + " | ");
+        caracteristicas.append("Fecha de Alta: " + ((this.fechaAltaCliente) != null ? this.fechaAltaCliente : "Null"));
+        return caracteristicas.toString();
     }
+
 }

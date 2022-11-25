@@ -30,7 +30,7 @@
             <property name="javax.persistence.jdbc.password" value="root" />
 
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>
-            <property name="hibernate.show_sql" value="false" />
+            <property name="hibernate.show_sql" value="true" />
             <!--hibernate crea por nosotros la base de datos, antes de crearla la elimina -->
             <property name="hibernate.hbm2ddl.auto" value="create" />
         </properties>
