@@ -14,4 +14,9 @@ public interface IOperacionesDao<T> {
      * @param elemento
      */
     void insertarElemento(T elemento);
+    /**
+     * Elimina el objeto 'elemento' en la base de datos
+     * @param elemento
+     */
+    void eliminarElemento(T elemento);
 }

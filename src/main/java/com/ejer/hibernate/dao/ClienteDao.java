@@ -91,14 +91,33 @@ public class ClienteDao implements IOperacionesDao<Cliente>{
 
     /**
      * Elimina un elemento de tipo 'Cliente' en la tabla 'cliente'
-     * @param dni
+     * @param cliente
      */
-    public void eliminarElemento(String dni) throws IllegalArgumentException {
-        if(dni == null) {
+    public void eliminarElemento(Cliente cliente) throws IllegalArgumentException {
+        if(cliente == null) {
             throw new IllegalArgumentException();
         }
+        EntityManager entityManager = ConexionBaseDatos.getInstance().getEntityManager();
+        EntityTransaction transaction = null;
+        try {
+            transaction = entityManager.getTransaction();
+            transaction.begin();
 
-    }
+            entityManager.remove(cliente);
+
+            transaction.commit();
+
+        } catch (Exception e) {
+            if(transaction != null) {
+                transaction.rollback();
+            }
+            throw e;
+        }
+        finally {
+            entityManager.close();
+        }
+
+        }
 
     public Cliente getCliente(String dni) throws IllegalArgumentException, NoSuchElementException {
         if(dni == null) {
