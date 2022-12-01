@@ -59,5 +59,24 @@
       <scope>test</scope>
     </dependency>
 
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-api</artifactId>
+      <version>2.19.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-core</artifactId>
+      <version>2.19.0</version>
+    </dependency>
+
+    <!-- https://logging.apache.org/log4j/2.x/manual/async.html -->
+    <dependency>
+      <groupId>com.lmax</groupId>
+      <artifactId>disruptor</artifactId>
+      <version>3.3.4</version>
+    </dependency>
+
   </dependencies>
 </project>

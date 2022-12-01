@@ -1,0 +1,21 @@
+22:54:31.943 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Creada instancia ConexionBaseDatos
+22:54:31.943 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
+22:54:31.945 [main] ERROR com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método crearConexion(): unidadPersistencia tiene el valor de persistencia
+22:54:32.037 [main] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: persistencia]
+22:54:32.094 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {5.4.1.Final}
+22:54:32.244 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+22:54:32.625 [main] WARN  org.hibernate.orm.connections.pooling - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+22:54:32.629 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost/agenda?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC]
+22:54:32.629 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001001: Connection properties: {user=root, password=****}
+22:54:32.629 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001003: Autocommit mode: false
+22:54:32.631 [main] INFO  org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20 (min=1)
+22:54:33.137 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+22:54:33.312 [main] WARN  org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.ejer.hibernate.entity.Registrado
+22:54:33.312 [main] WARN  org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.ejer.hibernate.entity.Registrado
+22:54:33.706 [main] INFO  org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+22:54:33.711 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método crearConexion(): Creado EntityManagerFactory
+22:54:33.711 [main] INFO  com.ejer.hibernate.conexion.ConexionBaseDatos - Abierta conexión con la base de datos
+22:54:33.711 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
+22:54:33.711 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método cerrarConexion(): se ha cerrado la conexión 
+22:54:33.711 [main] INFO  com.ejer.hibernate.conexion.ConexionBaseDatos - Cerrada la conexión con la base de datos
+22:54:33.712 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001008: Cleaning up connection pool [jdbc:mysql://localhost/agenda?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC]

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Appenders>
+        <!--
+        <Console name="LogToConsole" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+        -->
+        <!-- Async logger -->
+        <!--Inicializado estáticamente en Main:
+         Dlog4j2.contextSelector=org.apache.logging.log4j.core.async.AsyncLoggerContextSelector -->
+
+        <RandomAccessFile name="RandomAccessFile" fileName="logs/async.log" immediateFlush="false" append="false">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </RandomAccessFile>
+
+    </Appenders>
+
+
+    <Loggers>
+        <!-- Logger creado para el paquete com.ejer-->
+        <Logger name="com.ejer" level="debug" additivity="false">
+            <AppenderRef ref="RandomAccessFile"/>
+        </Logger>
+        <!-- Logger para hibernate-->
+        <Logger name="org.hibernate" level="info" additivity="false">
+            <AppenderRef ref="RandomAccessFile" />
+        </Logger>
+        <!-- Logger predeterminado -->
+        <Root level="error" includeLocation="false">
+            <AppenderRef ref="RandomAccessFile"/>
+        </Root>
+
+    </Loggers>
+</Configuration>
