@@ -1,6 +1,5 @@
 package com.ejer.controller;
 
-import com.ejer.hibernate.conexion.ConexionBaseDatos;
 import com.ejer.hibernate.entity.Cliente;
 import com.ejer.service.ServiceCliente;
 import org.apache.logging.log4j.LogManager;

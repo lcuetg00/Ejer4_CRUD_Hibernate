@@ -9,7 +9,7 @@ import javax.persistence.Persistence;
 /**
  * Clase que sigue un patrón Singleton
  * Utilizada para la conexión con la base de datos
- * Contiene un EntityManagerFactory para la conexión
+ * @author Luis Cueto
  */
 public class ConexionBaseDatos {
     /**
@@ -78,9 +78,9 @@ public class ConexionBaseDatos {
      * Cierra el el EntityManagerFactory de esta clase para cerrar la conexión con la base de datos
      */
     public void cerrarConexion() {
+        this.entityManagerFactory.close();
         logger.debug("Clase ConexionBaseDatos Método cerrarConexion(): se ha cerrado la conexión ");
         logger.info("Cerrada la conexión con la base de datos");
-        this.entityManagerFactory.close();
     }
 
     public void setUnidadPersistencia(final String unidadPersistencia) {

@@ -27,7 +27,6 @@ public class ClienteDao implements IOperacionesDao<Cliente>{
 
         } catch (Exception e) {
 
-            e.printStackTrace();
             throw e;
         }
         finally {
@@ -48,7 +47,6 @@ public class ClienteDao implements IOperacionesDao<Cliente>{
 
         } catch (Exception e) {
 
-            e.printStackTrace();
             throw e;
         }
         finally {
