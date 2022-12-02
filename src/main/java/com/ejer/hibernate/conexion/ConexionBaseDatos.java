@@ -27,9 +27,9 @@ public class ConexionBaseDatos {
     private String unidadPersistencia = "persistencia";
 
     /**
-     * Logger para
+     * Logger para la clase ConexionBaseDatos
      */
-    static final Logger logger  = LogManager.getLogger(ConexionBaseDatos.class.getName());
+    static private final Logger logger  = LogManager.getLogger(ConexionBaseDatos.class.getName());
 
     /**
      * Constructor privado
