@@ -69,9 +69,6 @@ public class ClienteDao implements IOperacionesDao<Cliente>{
             transaction = entityManager.getTransaction();
             transaction.begin();
 
-            //validar que no hay un cliente con el mismo dni
-            //si lo hay, lanza SQLIntegrityConstraintViolationException
-
             entityManager.persist(cliente);
 
             transaction.commit();

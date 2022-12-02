@@ -29,14 +29,14 @@ public class ConexionBaseDatos {
     /**
      * Logger para la clase ConexionBaseDatos
      */
-    static private final Logger logger  = LogManager.getLogger(ConexionBaseDatos.class.getName());
+    static private final Logger LOGGER = LogManager.getLogger(ConexionBaseDatos.class.getName());
 
     /**
      * Constructor privado
      * Creado para prevenir que desde fuera se creen instancias de esta clase (solo existirá 1 instancia, siguiendo el patrón Singleton)
      */
     private ConexionBaseDatos() {
-        logger.debug("Creada instancia ConexionBaseDatos");
+        LOGGER.debug("Creada instancia ConexionBaseDatos");
     }
 
     /**
@@ -44,13 +44,13 @@ public class ConexionBaseDatos {
      */
     public void crearConexion() {
         if(unidadPersistencia == null) {
-            logger.error("Clase ConexionBaseDatos Método crearConexion(): unidadPersistencia es null");
+            LOGGER.error("Clase ConexionBaseDatos Método crearConexion(): unidadPersistencia es null");
             throw new NullPointerException("Clase ConexionBaseDatos: unidadPersistencia es null");
         }
-        logger.error("Clase ConexionBaseDatos Método crearConexion(): unidadPersistencia tiene el valor de {}",this.unidadPersistencia);
+        LOGGER.error("Clase ConexionBaseDatos Método crearConexion(): unidadPersistencia tiene el valor de {}",this.unidadPersistencia);
         this.entityManagerFactory = Persistence.createEntityManagerFactory(unidadPersistencia);
-        logger.debug("Clase ConexionBaseDatos Método crearConexion(): Creado EntityManagerFactory");
-        logger.info("Abierta conexión con la base de datos");
+        LOGGER.debug("Clase ConexionBaseDatos Método crearConexion(): Creado EntityManagerFactory");
+        LOGGER.info("Abierta conexión con la base de datos");
     }
 
     /**
@@ -61,7 +61,7 @@ public class ConexionBaseDatos {
         if(instanciaConexion == null) {
             instanciaConexion = new ConexionBaseDatos();
         }
-        logger.debug("Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase");
+        LOGGER.debug("Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase");
         return instanciaConexion;
     }
 
@@ -70,7 +70,7 @@ public class ConexionBaseDatos {
      * @return
      */
     public EntityManager getEntityManager() {
-        logger.debug("Clase ConexionBaseDatos Método getEntityManager(): se ha creado un EntityManager y se ha devuelto");
+        LOGGER.debug("Clase ConexionBaseDatos Método getEntityManager(): se ha creado un EntityManager y se ha devuelto");
         return this.entityManagerFactory.createEntityManager();
     }
 
@@ -79,8 +79,8 @@ public class ConexionBaseDatos {
      */
     public void cerrarConexion() {
         this.entityManagerFactory.close();
-        logger.debug("Clase ConexionBaseDatos Método cerrarConexion(): se ha cerrado la conexión ");
-        logger.info("Cerrada la conexión con la base de datos");
+        LOGGER.debug("Clase ConexionBaseDatos Método cerrarConexion(): se ha cerrado la conexión ");
+        LOGGER.info("Cerrada la conexión con la base de datos");
     }
 
     public void setUnidadPersistencia(final String unidadPersistencia) {

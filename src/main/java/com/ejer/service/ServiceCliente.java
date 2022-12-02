@@ -4,7 +4,6 @@ import com.ejer.hibernate.dao.ClienteDao;
 import com.ejer.hibernate.entity.Cliente;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import java.security.InvalidParameterException;
 
 /**
  *
@@ -19,7 +18,7 @@ public class ServiceCliente {
     /**
      * Logger para la clase ServiceCliente
      */
-    static private final Logger logger  = LogManager.getLogger(ServiceCliente.class.getName());
+    static private final Logger LOGGER = LogManager.getLogger(ServiceCliente.class.getName());
 
 
     public ServiceCliente() {
@@ -43,7 +42,11 @@ public class ServiceCliente {
     }
 
     public void insertarCliente(final Cliente cliente) {
-        logger.debug("");
+        if(LOGGER.isDebugEnabled()) {
+            LOGGER.debug("");
+        }
+        //validar que no hay un cliente con el mismo dni
+        //si lo hay, lanza SQLIntegrityConstraintViolationException
         cliDao.insertarElemento(cliente);
     }
 
