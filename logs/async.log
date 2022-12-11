@@ -1,21 +1,90 @@
-22:54:31.943 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Creada instancia ConexionBaseDatos
-22:54:31.943 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
-22:54:31.945 [main] ERROR com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método crearConexion(): unidadPersistencia tiene el valor de persistencia
-22:54:32.037 [main] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: persistencia]
-22:54:32.094 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {5.4.1.Final}
-22:54:32.244 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-22:54:32.625 [main] WARN  org.hibernate.orm.connections.pooling - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
-22:54:32.629 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost/agenda?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC]
-22:54:32.629 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001001: Connection properties: {user=root, password=****}
-22:54:32.629 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001003: Autocommit mode: false
-22:54:32.631 [main] INFO  org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20 (min=1)
-22:54:33.137 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
-22:54:33.312 [main] WARN  org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.ejer.hibernate.entity.Registrado
-22:54:33.312 [main] WARN  org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.ejer.hibernate.entity.Registrado
-22:54:33.706 [main] INFO  org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-22:54:33.711 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método crearConexion(): Creado EntityManagerFactory
-22:54:33.711 [main] INFO  com.ejer.hibernate.conexion.ConexionBaseDatos - Abierta conexión con la base de datos
-22:54:33.711 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
-22:54:33.711 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método cerrarConexion(): se ha cerrado la conexión 
-22:54:33.711 [main] INFO  com.ejer.hibernate.conexion.ConexionBaseDatos - Cerrada la conexión con la base de datos
-22:54:33.712 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001008: Cleaning up connection pool [jdbc:mysql://localhost/agenda?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC]
+00:46:19.943 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Creada instancia ConexionBaseDatos
+00:46:19.946 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
+00:46:19.946 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
+00:46:19.948 [main] ERROR com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método crearConexion(): unidadPersistencia tiene el valor de tests
+00:46:20.056 [main] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: tests]
+00:46:20.116 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {5.4.1.Final}
+00:46:20.282 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+00:46:20.636 [main] WARN  org.hibernate.orm.connections.pooling - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+00:46:20.642 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001005: using driver [com.p6spy.engine.spy.P6SpyDriver] at URL [jdbc:p6spy:mysql://localhost/agendatest?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC]
+00:46:20.642 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001001: Connection properties: {user=root, password=****}
+00:46:20.643 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001003: Autocommit mode: false
+00:46:20.645 [main] INFO  org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20 (min=1)
+00:46:21.176 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+00:46:21.813 [main] INFO  org.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@7cea0110] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+00:46:21.832 [main] INFO  org.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@7eae3764] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+00:46:21.867 [main] INFO  org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+00:46:21.870 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método crearConexion(): Creado EntityManagerFactory
+00:46:21.870 [main] INFO  com.ejer.hibernate.conexion.ConexionBaseDatos - Abierta conexión con la base de datos
+00:46:21.876 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
+00:46:21.876 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getEntityManager(): se ha creado un EntityManager y se ha devuelto
+00:46:21.976 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
+00:46:21.976 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getEntityManager(): se ha creado un EntityManager y se ha devuelto
+00:46:21.980 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
+00:46:21.980 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getEntityManager(): se ha creado un EntityManager y se ha devuelto
+00:46:21.984 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
+00:46:21.984 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getEntityManager(): se ha creado un EntityManager y se ha devuelto
+00:46:21.988 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
+00:46:21.988 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getEntityManager(): se ha creado un EntityManager y se ha devuelto
+00:46:21.991 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
+00:46:21.991 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getEntityManager(): se ha creado un EntityManager y se ha devuelto
+00:46:22.099 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
+00:46:22.099 [main] INFO  org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl - HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+00:46:22.100 [main] INFO  org.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@5de6cf3a] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+00:46:22.106 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001008: Cleaning up connection pool [jdbc:p6spy:mysql://localhost/agendatest?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC]
+00:46:22.107 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método cerrarConexion(): se ha cerrado la conexión 
+00:46:22.108 [main] INFO  com.ejer.hibernate.conexion.ConexionBaseDatos - Cerrada la conexión con la base de datos
+00:46:22.116 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
+00:46:22.116 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
+00:46:22.116 [main] ERROR com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método crearConexion(): unidadPersistencia tiene el valor de tests
+00:46:22.120 [main] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: tests]
+00:46:22.130 [main] WARN  org.hibernate.orm.connections.pooling - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+00:46:22.130 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001005: using driver [com.p6spy.engine.spy.P6SpyDriver] at URL [jdbc:p6spy:mysql://localhost/agendatest?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC]
+00:46:22.131 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001001: Connection properties: {user=root, password=****}
+00:46:22.131 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001003: Autocommit mode: false
+00:46:22.131 [main] INFO  org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20 (min=1)
+00:46:22.143 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+00:46:22.163 [main] INFO  org.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@201c3cda] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+00:46:22.169 [main] INFO  org.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@4c86da0c] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+00:46:22.205 [main] INFO  org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+00:46:22.206 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método crearConexion(): Creado EntityManagerFactory
+00:46:22.206 [main] INFO  com.ejer.hibernate.conexion.ConexionBaseDatos - Abierta conexión con la base de datos
+00:46:22.206 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
+00:46:22.206 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getEntityManager(): se ha creado un EntityManager y se ha devuelto
+00:46:22.210 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
+00:46:22.210 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getEntityManager(): se ha creado un EntityManager y se ha devuelto
+00:46:22.214 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
+00:46:22.214 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getEntityManager(): se ha creado un EntityManager y se ha devuelto
+00:46:22.218 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
+00:46:22.218 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getEntityManager(): se ha creado un EntityManager y se ha devuelto
+00:46:22.231 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
+00:46:22.231 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
+00:46:22.231 [main] ERROR com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método crearConexion(): unidadPersistencia tiene el valor de tests
+00:46:22.235 [main] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: tests]
+00:46:22.245 [main] WARN  org.hibernate.orm.connections.pooling - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+00:46:22.245 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001005: using driver [com.p6spy.engine.spy.P6SpyDriver] at URL [jdbc:p6spy:mysql://localhost/agendatest?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC]
+00:46:22.245 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001001: Connection properties: {user=root, password=****}
+00:46:22.245 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001003: Autocommit mode: false
+00:46:22.245 [main] INFO  org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20 (min=1)
+00:46:22.257 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+00:46:22.267 [main] INFO  org.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@557a84fe] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+00:46:22.275 [main] INFO  org.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@6deee370] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+00:46:22.305 [main] INFO  org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+00:46:22.305 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método crearConexion(): Creado EntityManagerFactory
+00:46:22.305 [main] INFO  com.ejer.hibernate.conexion.ConexionBaseDatos - Abierta conexión con la base de datos
+00:46:22.305 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
+00:46:22.305 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getEntityManager(): se ha creado un EntityManager y se ha devuelto
+00:46:22.308 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
+00:46:22.308 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getEntityManager(): se ha creado un EntityManager y se ha devuelto
+00:46:22.313 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
+00:46:22.313 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getEntityManager(): se ha creado un EntityManager y se ha devuelto
+00:46:22.318 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
+00:46:22.318 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getEntityManager(): se ha creado un EntityManager y se ha devuelto
+00:46:22.321 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
+00:46:22.321 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getEntityManager(): se ha creado un EntityManager y se ha devuelto
+00:46:22.325 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
+00:46:22.325 [main] INFO  org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl - HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+00:46:22.325 [main] INFO  org.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@1491344a] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+00:46:22.331 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001008: Cleaning up connection pool [jdbc:p6spy:mysql://localhost/agendatest?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC]
+00:46:22.331 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método cerrarConexion(): se ha cerrado la conexión 
+00:46:22.331 [main] INFO  com.ejer.hibernate.conexion.ConexionBaseDatos - Cerrada la conexión con la base de datos

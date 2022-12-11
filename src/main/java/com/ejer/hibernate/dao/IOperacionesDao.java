@@ -2,6 +2,11 @@ package com.ejer.hibernate.dao;
 
 import java.util.List;
 
+/**
+ * Interfaz con métodos básicos para acceder a la base de datos
+ * @param <T>
+ * @author Luis Cueto
+ */
 public interface IOperacionesDao<T> {
 
     /**

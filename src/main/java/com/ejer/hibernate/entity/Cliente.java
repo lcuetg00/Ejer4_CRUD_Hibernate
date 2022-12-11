@@ -54,9 +54,6 @@ public class Cliente implements Serializable{
     @Column(name = "fechaAltaCliente")
     private LocalDateTime fechaAltaCliente;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    private Registrado tipoRegistrado;
-
     public long getIdCliente() {
         return idCliente;
     }
