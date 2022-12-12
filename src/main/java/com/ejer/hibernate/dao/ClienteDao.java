@@ -2,9 +2,12 @@ package com.ejer.hibernate.dao;
 
 import com.ejer.hibernate.conexion.ConexionBaseDatos;
 import com.ejer.hibernate.entity.Cliente;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -13,6 +16,11 @@ import java.util.NoSuchElementException;
  * Clase que implementa las operaciones de la tabla 'clientes' de la base de datos
  */
 public class ClienteDao implements IOperacionesDao<Cliente>{
+
+    /**
+     * Logger para la clase ClienteDao
+     */
+    static private final Logger LOGGER = LoggerFactory.getLogger(ClienteDao.class.getName());
 
     /**
      * Devuelve una lista con todos los elementos de la tabla 'cliente'
@@ -40,7 +48,7 @@ public class ClienteDao implements IOperacionesDao<Cliente>{
      */
     public List recogerListaElementosOrdenadosDNI() {
         EntityManager entityManager = ConexionBaseDatos.getInstance().getEntityManager();
-        String query = "SELECT c FROM Cliente c ORDER BY c.dniCliente ASC";
+        String query = "SELECT c FROM Cliente c ORDER BY c.numIdentificacion ASC";
         TypedQuery<Cliente> typedQuery = entityManager.createQuery(query, Cliente.class);
         try {
             return typedQuery.getResultList();
@@ -114,50 +122,52 @@ public class ClienteDao implements IOperacionesDao<Cliente>{
 
         }
 
-    public Cliente getCliente(String dni) throws IllegalArgumentException, NoSuchElementException {
-        if(dni == null) {
+    public Cliente getCliente(String numIdentificacion) throws IllegalArgumentException, NoSuchElementException {
+        if(numIdentificacion == null) {
             throw new IllegalArgumentException();
         }
         EntityManager entityManager = ConexionBaseDatos.getInstance().getEntityManager();
-        String query = "SELECT c FROM Cliente WHERE c.dniCliente = :dni";
+        String query = "SELECT c FROM Cliente c WHERE c.numIdentificacion = :numIdentificacion";
         TypedQuery<Cliente> typedQuery = entityManager.createQuery(query, Cliente.class);
-        List<Cliente> clientes;
+        typedQuery.setParameter("numIdentificacion", numIdentificacion);
+        Cliente cliente = null;
         try {
-            Cliente cliente = typedQuery.getSingleResult();
+            cliente = typedQuery.getSingleResult();
             //Solo puede haber un cliente con ese DNI concreto ya que en la base de datos
             //el campo DNI es unique
 
 
-        } catch (NoSuchElementException e) {
+        } catch (NoResultException e) {
             //lanzarla arriba la excepcion?
         }
         finally {
             entityManager.close();
         }
 
-        return null;
+        return cliente;
     }
 
 
-    public boolean comprobarExisteClienteBaseDeDatos(String dni) throws IllegalArgumentException {
-        if(dni == null) {
-            throw new IllegalArgumentException();
-        }
-        EntityManager entityManager = ConexionBaseDatos.getInstance().getEntityManager();
-        String query = "SELECT c FROM Cliente WHERE c.dniCliente = :dni";
-        TypedQuery<Cliente> typedQuery = entityManager.createQuery(query, Cliente.class);
-        List<Cliente> clientes;
-        try {
-            Cliente cliente = typedQuery.getSingleResult();
-            return true;
-
-        } catch (NoSuchElementException e) {
-            //No existe ese cliente
-            return false;
-        }
-        finally {
-            entityManager.close();
-        }
-
-    }
+//    public boolean comprobarExisteClienteBaseDeDatos(String numIdentificacion) throws IllegalArgumentException {
+//        if(numIdentificacion == null) {
+//            throw new IllegalArgumentException();
+//        }
+//        EntityManager entityManager = ConexionBaseDatos.getInstance().getEntityManager();
+//        String query = "SELECT c FROM Cliente c WHERE c.numIdentificacion = :numIdentificacion";
+//        TypedQuery<Cliente> typedQuery = entityManager.createQuery(query, Cliente.class);
+//        typedQuery.setParameter("numIdentificacion", numIdentificacion);
+//        List<Cliente> clientes;
+//        try {
+//            Cliente cliente = typedQuery.getSingleResult();
+//            return true;
+//
+//        } catch (NoResultException e) {
+//            //No existe ese cliente
+//            return false;
+//        }
+//        finally {
+//            entityManager.close();
+//        }
+//
+//    }
 }

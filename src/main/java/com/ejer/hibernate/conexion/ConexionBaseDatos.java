@@ -1,6 +1,9 @@
 package com.ejer.hibernate.conexion;
 
-import org.apache.logging.log4j.*;
+
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -29,7 +32,7 @@ public class ConexionBaseDatos {
     /**
      * Logger para la clase ConexionBaseDatos
      */
-    static private final Logger LOGGER = LogManager.getLogger(ConexionBaseDatos.class.getName());
+    static private final Logger LOGGER = LoggerFactory.getLogger(ConexionBaseDatos.class.getName());
 
     /**
      * Constructor privado
@@ -49,8 +52,12 @@ public class ConexionBaseDatos {
         }
         LOGGER.error("Clase ConexionBaseDatos Método crearConexion(): unidadPersistencia tiene el valor de {}",this.unidadPersistencia);
         this.entityManagerFactory = Persistence.createEntityManagerFactory(unidadPersistencia);
-        LOGGER.debug("Clase ConexionBaseDatos Método crearConexion(): Creado EntityManagerFactory");
-        LOGGER.info("Abierta conexión con la base de datos");
+        if(LOGGER.isDebugEnabled()) {
+            LOGGER.debug("Clase ConexionBaseDatos Método crearConexion(): Creado EntityManagerFactory");
+        }
+        if(LOGGER.isInfoEnabled()) {
+            LOGGER.info("Abierta conexión con la base de datos");
+        }
     }
 
     /**
@@ -61,7 +68,9 @@ public class ConexionBaseDatos {
         if(instanciaConexion == null) {
             instanciaConexion = new ConexionBaseDatos();
         }
-        LOGGER.debug("Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase");
+        if(LOGGER.isDebugEnabled()) {
+            LOGGER.debug("Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase");
+        }
         return instanciaConexion;
     }
 
@@ -70,7 +79,9 @@ public class ConexionBaseDatos {
      * @return
      */
     public EntityManager getEntityManager() {
-        LOGGER.debug("Clase ConexionBaseDatos Método getEntityManager(): se ha creado un EntityManager y se ha devuelto");
+        if(LOGGER.isDebugEnabled()) {
+            LOGGER.debug("Clase ConexionBaseDatos Método getEntityManager(): se ha creado un EntityManager y se ha devuelto");
+        }
         return this.entityManagerFactory.createEntityManager();
     }
 
@@ -79,11 +90,19 @@ public class ConexionBaseDatos {
      */
     public void cerrarConexion() {
         this.entityManagerFactory.close();
-        LOGGER.debug("Clase ConexionBaseDatos Método cerrarConexion(): se ha cerrado la conexión ");
-        LOGGER.info("Cerrada la conexión con la base de datos");
+        if(LOGGER.isDebugEnabled()) {
+            LOGGER.debug("Clase ConexionBaseDatos Método cerrarConexion(): se ha cerrado la conexión ");
+        }
+        if(LOGGER.isInfoEnabled()) {
+            LOGGER.info("Cerrada la conexión con la base de datos");
+        }
     }
 
+
     public void setUnidadPersistencia(final String unidadPersistencia) {
+        if(LOGGER.isDebugEnabled()) {
+            LOGGER.debug("Clase ConexionBaseDatos Método setUnidadPersistencia(String): se ha insertado la nueva unidadPersistencia: {}",unidadPersistencia);
+        }
         this.unidadPersistencia = unidadPersistencia;
     }
 

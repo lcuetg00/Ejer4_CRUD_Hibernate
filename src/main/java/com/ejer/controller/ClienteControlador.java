@@ -2,8 +2,8 @@ package com.ejer.controller;
 
 import com.ejer.hibernate.entity.Cliente;
 import com.ejer.service.ClienteService;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.security.InvalidParameterException;
 
@@ -30,7 +30,7 @@ public class ClienteControlador {
     /**
      * Logger para la clase ControladorCliente
      */
-    static private final Logger LOGGER = LogManager.getLogger(ClienteControlador.class.getName());
+    static private final Logger LOGGER = LoggerFactory.getLogger(ClienteControlador.class.getName());
 
 
     /**
@@ -50,18 +50,12 @@ public class ClienteControlador {
         boolean esValido = false;
 
         if(numeroIdentificacion.matches(REGEX_NIE)) {
-            LOGGER.debug("Clase ControladorCliente Método validarNumeroDocumentacion(final String numeroIdentificacion): {} concuerda con {}",numeroIdentificacion,REGEX_NIE);
-            LOGGER.info("El Número de Identificación es un NIE");
             esValido = ClienteService.validarNie(numeroIdentificacion);
         }
         if(numeroIdentificacion.matches(REGEX_NIF)) {
-            LOGGER.debug("Clase ControladorCliente Método validarNumeroDocumentacion(final String numeroIdentificacion): {} concuerda con {}",numeroIdentificacion,REGEX_NIF);
-            LOGGER.info("El Número de Identificación es un NIF");
             esValido = ClienteService.validarNif(numeroIdentificacion);
         }
         if(numeroIdentificacion.matches(REGEX_CIF)) {
-            LOGGER.debug("Clase ControladorCliente Método validarNumeroDocumentacion(final String numeroIdentificacion): {} concuerda con {}",numeroIdentificacion,REGEX_CIF);
-            LOGGER.info("El Número de Identificación es un CIF");
             esValido = ClienteService.valifarCif(numeroIdentificacion);
         }
 
@@ -69,15 +63,15 @@ public class ClienteControlador {
     }
 
     public void insertarCliente(final Cliente cliente) {
-        LOGGER.debug("Clase ControladorCliente Método insertarCliente(final Cliente cliente): se va a insertar {}",cliente.toString());
-        LOGGER.info("ControladorCliente: se va a insertar el cliente");
-        if(this.validarNumeroDocumentacion(cliente.getDniCliente())) {
-            LOGGER.debug("Clase ControladorCliente Método insertarCliente(final Cliente cliente): Número de Indetificador del cliente es válido");
-            LOGGER.debug("Clase ControladorCliente Método insertarCliente(final Cliente cliente): Llamado a ServiceCliente para insertar el cliente");
-            serCli.insertarCliente(cliente);
-        } else {
-            LOGGER.debug("Clase ControladorCliente Método insertarCliente(final Cliente cliente): Número de Indetificador del cliente no es válido");
+        //if(this.validarNumeroDocumentacion(cliente.getNumIdentificacion())) {
+             serCli.insertarCliente(cliente);
+        //} else {
+        //    LOGGER.debug("Clase ControladorCliente Método insertarCliente(final Cliente cliente): Número de Indetificador del cliente no es válido");
 
-        }
+        //}
+    }
+
+    public void eliminarCliente(final String numeroIdentificacion) {
+        serCli.eliminarCliente(numeroIdentificacion);
     }
 }

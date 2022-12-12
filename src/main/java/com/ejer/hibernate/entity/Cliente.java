@@ -19,7 +19,7 @@ public class Cliente implements Serializable{
     }
 
     public Cliente(String dni, String nombre, String primerApellido, String segundoApellido, LocalDateTime fechaAltaCliente) {
-        this.dniCliente = dni;
+        this.numIdentificacion = dni;
         this.nombreCliente = nombre;
         this.primerApellidoCliente = primerApellido;
         this.segundoApellidoCliente = segundoApellido;
@@ -31,11 +31,11 @@ public class Cliente implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idCliente;
 
-    @Column(name = "dniCliente",
+    @Column(name = "numIdentificacion",
             length = 9,
             unique = true,
             nullable = false)
-    private String dniCliente;
+    private String numIdentificacion;
 
     @Column(name = "nombreCliente",
             length = 45,
@@ -94,18 +94,18 @@ public class Cliente implements Serializable{
         this.fechaAltaCliente = fechaAltaCliente;
     }
 
-    public String getDniCliente() {
-        return dniCliente;
+    public String getNumIdentificacion() {
+        return numIdentificacion;
     }
 
-    public void setDniCliente(String dniCliente) {
-        this.dniCliente = dniCliente;
+    public void setNumIdentificacion(String numIdentificacion) {
+        this.numIdentificacion = numIdentificacion;
     }
 
     public String toString() {
         StringBuilder caracteristicas = new StringBuilder();
         caracteristicas.append("Cliente: ");
-        caracteristicas.append("DNI: " + this.dniCliente + " | ");
+        caracteristicas.append("Número de Identificacion: " + this.numIdentificacion + " | ");
         caracteristicas.append("Nombre: " + this.nombreCliente + " | ");
         caracteristicas.append("Primer Apellido: " + this.primerApellidoCliente + " | ");
         caracteristicas.append("Segundo Apellido: " + ((this.segundoApellidoCliente) != null ? this.segundoApellidoCliente : "Null") + " | ");

@@ -38,7 +38,10 @@ public class ClienteService {
     }
     
     public void eliminarCliente(final String numIdentificacion) {
+        //Buscamos al cliente en la base de datos
+        Cliente clienteEliminar = cliDao.getCliente(numIdentificacion);
 
+        cliDao.eliminarElemento(clienteEliminar);
     }
 
     public void insertarCliente(final Cliente cliente) {

@@ -2,17 +2,14 @@ package com.ejer.tests;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import com.ejer.controller.ClienteControlador;
 import com.ejer.hibernate.conexion.ConexionBaseDatos;
 import com.ejer.hibernate.dao.ClienteDao;
 import com.ejer.hibernate.entity.Cliente;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
@@ -21,6 +18,7 @@ import java.util.List;
 class TestBaseDeDatos {
 
     private ClienteDao cliDao;
+    private ClienteControlador clienteControlador;
     private LocalDateTime fechaAltaCliente1;
     private LocalDateTime fechaAltaCliente2;
     private Cliente cliente1;
@@ -95,12 +93,13 @@ class TestBaseDeDatos {
     @Test
     @DisplayName("Test para probar a eliminar un cliente por su DNI")
     void testEliminarClienteConDni() {
-        cliDao = new ClienteDao();
+        clienteControlador = new ClienteControlador();
 
-        cliDao.insertarElemento(cliente1);
-        cliDao.insertarElemento(cliente2);
-        cliDao.insertarElemento(cliente3);
+        clienteControlador.insertarCliente(cliente1);
+        clienteControlador.insertarCliente(cliente2);
+        clienteControlador.insertarCliente(cliente3);
 
+        clienteControlador.eliminarCliente(cliente2.getNumIdentificacion());
         //cliDao.eliminarElemento(cliente2.getDniCliente());
 
         List<Cliente> lista = cliDao.recogerListaElementos();
