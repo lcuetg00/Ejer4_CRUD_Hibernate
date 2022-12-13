@@ -60,9 +60,9 @@ class TestBaseDeDatos {
         //Tenemos 3 elementos en la base de datos ahora:
         assertEquals(lista.size(),3);
 
-        assertEquals(lista.get(0).toString(), "Cliente: DNI: 39029018L | Nombre: Mario | Primer Apellido: Fernández | Segundo Apellido: Alexis | Fecha de Alta: "+this.fechaAltaCliente1.truncatedTo(ChronoUnit.SECONDS).format(dtf).toString());
-        assertEquals(lista.get(1).toString(), "Cliente: DNI: 07031947L | Nombre: Antonio | Primer Apellido: García | Segundo Apellido: Null | Fecha de Alta: "+this.fechaAltaCliente2.truncatedTo(ChronoUnit.SECONDS).format(dtf).toString());
-        assertEquals(lista.get(2).toString(), "Cliente: DNI: 91906775V | Nombre: Paco | Primer Apellido: Rodríguez | Segundo Apellido: Null | Fecha de Alta: Null");
+        assertEquals(lista.get(0).toString(), "Cliente: Número de Identificacion: 39029018L | Nombre: Mario | Primer Apellido: Fernández | Segundo Apellido: Alexis | Fecha de Alta: "+this.fechaAltaCliente1.truncatedTo(ChronoUnit.SECONDS).format(dtf).toString());
+        assertEquals(lista.get(1).toString(), "Cliente: Número de Identificacion: 07031947L | Nombre: Antonio | Primer Apellido: García | Segundo Apellido: Null | Fecha de Alta: "+this.fechaAltaCliente2.truncatedTo(ChronoUnit.SECONDS).format(dtf).toString());
+        assertEquals(lista.get(2).toString(), "Cliente: Número de Identificacion: 91906775V | Nombre: Paco | Primer Apellido: Rodríguez | Segundo Apellido: Null | Fecha de Alta: Null");
 
         ConexionBaseDatos.getInstance().cerrarConexion();
     }
@@ -93,6 +93,7 @@ class TestBaseDeDatos {
     @Test
     @DisplayName("Test para probar a eliminar un cliente por su DNI")
     void testEliminarClienteConDni() {
+        cliDao = new ClienteDao();
         clienteControlador = new ClienteControlador();
 
         clienteControlador.insertarCliente(cliente1);
@@ -106,10 +107,10 @@ class TestBaseDeDatos {
         //Tenemos 2 elementos en la base de datos tras eliminar uno de ellos
         assertEquals(lista.size(),2);
 
-        assertEquals(lista.get(0).toString(), "Cliente: DNI: 39029018L | Nombre: Mario | Primer Apellido: Fernández | Segundo Apellido: Alexis | Fecha de Alta: "+this.fechaAltaCliente1.truncatedTo(ChronoUnit.SECONDS).format(dtf).toString());
-        assertEquals(lista.get(2).toString(), "Cliente: DNI: 91906775V | Nombre: Paco | Primer Apellido: Rodríguez | Segundo Apellido: Null | Fecha de Alta: Null");
+        assertEquals(lista.get(0).toString(), "Cliente: Número de Identificacion: 39029018L | Nombre: Mario | Primer Apellido: Fernández | Segundo Apellido: Alexis | Fecha de Alta: "+this.fechaAltaCliente1.truncatedTo(ChronoUnit.SECONDS).format(dtf).toString());
+        assertEquals(lista.get(1).toString(), "Cliente: Número de Identificacion: 91906775V | Nombre: Paco | Primer Apellido: Rodríguez | Segundo Apellido: Null | Fecha de Alta: Null");
 
-        //cliDao.eliminarElemento(cliente3.getDniCliente());
+        clienteControlador.eliminarCliente(cliente3.getNumIdentificacion());
 
         List<Cliente> lista2 = cliDao.recogerListaElementos();
         //Tenemos 2 elementos en la base de datos tras eliminar uno de ellos

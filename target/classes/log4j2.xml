@@ -21,10 +21,9 @@
         <Logger name="org.hibernate" level="info" additivity="false">
             <AppenderRef ref="RandomAccessFile" />
         </Logger>
-        <!-- Logger predeterminado -->
-        <Root level="error" includeLocation="false">
+        <!-- Logger predeterminado-->
+        <Root level="info" includeLocation="false">
             <AppenderRef ref="RandomAccessFile"/>
         </Root>
-
     </Loggers>
 </Configuration>

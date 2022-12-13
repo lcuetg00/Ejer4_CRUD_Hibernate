@@ -106,7 +106,7 @@ public class ClienteDao implements IOperacionesDao<Cliente>{
             transaction = entityManager.getTransaction();
             transaction.begin();
 
-            entityManager.remove(cliente);
+            entityManager.remove(entityManager.contains(cliente) ? cliente : entityManager.merge(cliente));
 
             transaction.commit();
 
