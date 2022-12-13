@@ -1,160 +1,251 @@
-02:31:52.844 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Creada instancia ConexionBaseDatos
-02:31:52.853 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
-02:31:52.857 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método setUnidadPersistencia(String): se ha insertado la nueva unidadPersistencia: tests
-02:31:52.857 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
-02:31:52.857 [main] ERROR com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método crearConexion(): unidadPersistencia tiene el valor de tests
-02:31:53.037 [main] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: tests]
-02:31:53.158 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {5.4.1.Final}
-02:31:53.390 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-02:31:53.849 [main] WARN  org.hibernate.orm.connections.pooling - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
-02:31:53.857 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001005: using driver [com.p6spy.engine.spy.P6SpyDriver] at URL [jdbc:p6spy:mysql://localhost/agendatest?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC]
-02:31:53.857 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001001: Connection properties: {user=root, password=****}
-02:31:53.858 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001003: Autocommit mode: false
-02:31:53.861 [main] INFO  org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20 (min=1)
-02:31:54.597 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
-02:31:55.538 [main] INFO  org.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@51a6cc2a] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
-02:31:55.539 [main] INFO  p6spy - 0 | commit     | 
-02:31:55.549 [main] INFO  p6spy - 7 | statement  | drop table if exists clientes
-02:31:55.560 [main] INFO  org.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@19f7222e] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
-02:31:55.561 [main] INFO  p6spy - 0 | commit     | 
-02:31:55.600 [main] INFO  p6spy - 38 | statement  | create table clientes (idCliente integer not null auto_increment, fechaAltaCliente datetime, nombreCliente varchar(45) not null, numIdentificacion varchar(9) not null, primerApellidoCliente varchar(45) not null, segundoApellidoCliente varchar(45), primary key (idCliente)) engine=MyISAM
-02:31:55.713 [main] INFO  p6spy - 111 | statement  | alter table clientes add constraint UK_df7sed26eio8uqvt7nh6caesj unique (numIdentificacion)
-02:31:55.726 [main] INFO  org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-02:31:55.731 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método crearConexion(): Creado EntityManagerFactory
-02:31:55.731 [main] INFO  com.ejer.hibernate.conexion.ConexionBaseDatos - Abierta conexión con la base de datos
-02:31:55.744 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
-02:31:55.745 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getEntityManager(): se ha creado un EntityManager y se ha devuelto
-02:31:55.886 [main] INFO  p6spy - 2 | statement  | insert into clientes (fechaAltaCliente, nombreCliente, numIdentificacion, primerApellidoCliente, segundoApellidoCliente) values ('2022-12-13T02:31:55.000+0100', 'Mario', '39029018L', 'Fernández', 'Alexis')
-02:31:55.895 [main] INFO  p6spy - 0 | commit     | 
-02:31:55.898 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
-02:31:55.898 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getEntityManager(): se ha creado un EntityManager y se ha devuelto
-02:31:55.903 [main] INFO  p6spy - 2 | statement  | insert into clientes (fechaAltaCliente, nombreCliente, numIdentificacion, primerApellidoCliente, segundoApellidoCliente) values (NULL, 'Paco', '91906775V', 'Rodríguez', NULL)
-02:31:55.905 [main] INFO  p6spy - 0 | commit     | 
-02:31:55.906 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
-02:31:55.906 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getEntityManager(): se ha creado un EntityManager y se ha devuelto
-02:31:55.909 [main] INFO  p6spy - 1 | statement  | insert into clientes (fechaAltaCliente, nombreCliente, numIdentificacion, primerApellidoCliente, segundoApellidoCliente) values (NULL, 'Álvaro', '48026219B', 'Marqués', NULL)
-02:31:55.911 [main] INFO  p6spy - 0 | commit     | 
-02:31:55.912 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
-02:31:55.912 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getEntityManager(): se ha creado un EntityManager y se ha devuelto
-02:31:55.917 [main] INFO  p6spy - 1 | statement  | insert into clientes (fechaAltaCliente, nombreCliente, numIdentificacion, primerApellidoCliente, segundoApellidoCliente) values ('2022-12-13T02:31:55.000+0100', 'Antonio', '07031947L', 'García', NULL)
-02:31:55.918 [main] INFO  p6spy - 0 | commit     | 
-02:31:55.919 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
-02:31:55.919 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getEntityManager(): se ha creado un EntityManager y se ha devuelto
-02:31:55.923 [main] INFO  p6spy - 1 | statement  | insert into clientes (fechaAltaCliente, nombreCliente, numIdentificacion, primerApellidoCliente, segundoApellidoCliente) values (NULL, 'Laura', '15982705M', 'Lour', NULL)
-02:31:55.924 [main] INFO  p6spy - 0 | commit     | 
-02:31:55.925 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
-02:31:55.925 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getEntityManager(): se ha creado un EntityManager y se ha devuelto
-02:31:56.034 [main] INFO  p6spy - 3 | statement  | select cliente0_.idCliente as idClient1_0_, cliente0_.fechaAltaCliente as fechaAlt2_0_, cliente0_.nombreCliente as nombreCl3_0_, cliente0_.numIdentificacion as numIdent4_0_, cliente0_.primerApellidoCliente as primerAp5_0_, cliente0_.segundoApellidoCliente as segundoA6_0_ from clientes cliente0_ order by cliente0_.numIdentificacion ASC
-02:31:56.046 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
-02:31:56.046 [main] INFO  org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl - HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
-02:31:56.047 [main] INFO  org.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@57562473] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
-02:31:56.048 [main] INFO  p6spy - 0 | commit     | 
-02:31:56.053 [main] INFO  p6spy - 4 | statement  | drop table if exists clientes
-02:31:56.053 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001008: Cleaning up connection pool [jdbc:p6spy:mysql://localhost/agendatest?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC]
-02:31:56.055 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método cerrarConexion(): se ha cerrado la conexión 
-02:31:56.055 [main] INFO  com.ejer.hibernate.conexion.ConexionBaseDatos - Cerrada la conexión con la base de datos
-02:31:56.065 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
-02:31:56.065 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método setUnidadPersistencia(String): se ha insertado la nueva unidadPersistencia: tests
-02:31:56.065 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
-02:31:56.065 [main] ERROR com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método crearConexion(): unidadPersistencia tiene el valor de tests
-02:31:56.071 [main] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: tests]
-02:31:56.083 [main] WARN  org.hibernate.orm.connections.pooling - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
-02:31:56.084 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001005: using driver [com.p6spy.engine.spy.P6SpyDriver] at URL [jdbc:p6spy:mysql://localhost/agendatest?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC]
-02:31:56.084 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001001: Connection properties: {user=root, password=****}
-02:31:56.084 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001003: Autocommit mode: false
-02:31:56.084 [main] INFO  org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20 (min=1)
-02:31:56.128 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
-02:31:56.160 [main] INFO  org.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@306f6f1d] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
-02:31:56.161 [main] INFO  p6spy - 0 | commit     | 
-02:31:56.164 [main] INFO  p6spy - 2 | statement  | drop table if exists clientes
-02:31:56.165 [main] INFO  org.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@7d7cac8] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
-02:31:56.166 [main] INFO  p6spy - 0 | commit     | 
-02:31:56.171 [main] INFO  p6spy - 5 | statement  | create table clientes (idCliente integer not null auto_increment, fechaAltaCliente datetime, nombreCliente varchar(45) not null, numIdentificacion varchar(9) not null, primerApellidoCliente varchar(45) not null, segundoApellidoCliente varchar(45), primary key (idCliente)) engine=MyISAM
-02:31:56.342 [main] INFO  p6spy - 169 | statement  | alter table clientes add constraint UK_df7sed26eio8uqvt7nh6caesj unique (numIdentificacion)
-02:31:56.348 [main] INFO  org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-02:31:56.348 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método crearConexion(): Creado EntityManagerFactory
-02:31:56.348 [main] INFO  com.ejer.hibernate.conexion.ConexionBaseDatos - Abierta conexión con la base de datos
-02:31:56.350 [main] DEBUG com.ejer.service.ClienteService - 
-02:31:56.350 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
-02:31:56.350 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getEntityManager(): se ha creado un EntityManager y se ha devuelto
-02:31:56.353 [main] INFO  p6spy - 1 | statement  | insert into clientes (fechaAltaCliente, nombreCliente, numIdentificacion, primerApellidoCliente, segundoApellidoCliente) values ('2022-12-13T02:31:56.000+0100', 'Mario', '39029018L', 'Fernández', 'Alexis')
-02:31:56.354 [main] INFO  p6spy - 0 | commit     | 
-02:31:56.355 [main] DEBUG com.ejer.service.ClienteService - 
-02:31:56.355 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
-02:31:56.355 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getEntityManager(): se ha creado un EntityManager y se ha devuelto
-02:31:56.358 [main] INFO  p6spy - 1 | statement  | insert into clientes (fechaAltaCliente, nombreCliente, numIdentificacion, primerApellidoCliente, segundoApellidoCliente) values ('2022-12-13T02:31:56.000+0100', 'Antonio', '07031947L', 'García', NULL)
-02:31:56.359 [main] INFO  p6spy - 0 | commit     | 
-02:31:56.359 [main] DEBUG com.ejer.service.ClienteService - 
-02:31:56.359 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
-02:31:56.359 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getEntityManager(): se ha creado un EntityManager y se ha devuelto
-02:31:56.363 [main] INFO  p6spy - 1 | statement  | insert into clientes (fechaAltaCliente, nombreCliente, numIdentificacion, primerApellidoCliente, segundoApellidoCliente) values (NULL, 'Paco', '91906775V', 'Rodríguez', NULL)
-02:31:56.364 [main] INFO  p6spy - 0 | commit     | 
-02:31:56.364 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
-02:31:56.364 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getEntityManager(): se ha creado un EntityManager y se ha devuelto
-02:31:56.376 [main] INFO  p6spy - 3 | statement  | select cliente0_.idCliente as idClient1_0_, cliente0_.fechaAltaCliente as fechaAlt2_0_, cliente0_.nombreCliente as nombreCl3_0_, cliente0_.numIdentificacion as numIdent4_0_, cliente0_.primerApellidoCliente as primerAp5_0_, cliente0_.segundoApellidoCliente as segundoA6_0_ from clientes cliente0_ where cliente0_.numIdentificacion='07031947L'
-02:31:56.377 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
-02:31:56.377 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getEntityManager(): se ha creado un EntityManager y se ha devuelto
-02:31:56.386 [main] INFO  p6spy - 0 | statement  | select cliente0_.idCliente as idClient1_0_0_, cliente0_.fechaAltaCliente as fechaAlt2_0_0_, cliente0_.nombreCliente as nombreCl3_0_0_, cliente0_.numIdentificacion as numIdent4_0_0_, cliente0_.primerApellidoCliente as primerAp5_0_0_, cliente0_.segundoApellidoCliente as segundoA6_0_0_ from clientes cliente0_ where cliente0_.idCliente=2
-02:31:56.397 [main] INFO  p6spy - 1 | statement  | delete from clientes where idCliente=2
-02:31:56.399 [main] INFO  p6spy - 0 | commit     | 
-02:31:56.399 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
-02:31:56.399 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getEntityManager(): se ha creado un EntityManager y se ha devuelto
-02:31:56.401 [main] INFO  p6spy - 0 | statement  | select cliente0_.idCliente as idClient1_0_, cliente0_.fechaAltaCliente as fechaAlt2_0_, cliente0_.nombreCliente as nombreCl3_0_, cliente0_.numIdentificacion as numIdent4_0_, cliente0_.primerApellidoCliente as primerAp5_0_, cliente0_.segundoApellidoCliente as segundoA6_0_ from clientes cliente0_
-02:31:56.405 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
-02:31:56.405 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getEntityManager(): se ha creado un EntityManager y se ha devuelto
-02:31:56.406 [main] INFO  p6spy - 0 | statement  | select cliente0_.idCliente as idClient1_0_, cliente0_.fechaAltaCliente as fechaAlt2_0_, cliente0_.nombreCliente as nombreCl3_0_, cliente0_.numIdentificacion as numIdent4_0_, cliente0_.primerApellidoCliente as primerAp5_0_, cliente0_.segundoApellidoCliente as segundoA6_0_ from clientes cliente0_ where cliente0_.numIdentificacion='91906775V'
-02:31:56.407 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
-02:31:56.407 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getEntityManager(): se ha creado un EntityManager y se ha devuelto
-02:31:56.410 [main] INFO  p6spy - 1 | statement  | select cliente0_.idCliente as idClient1_0_0_, cliente0_.fechaAltaCliente as fechaAlt2_0_0_, cliente0_.nombreCliente as nombreCl3_0_0_, cliente0_.numIdentificacion as numIdent4_0_0_, cliente0_.primerApellidoCliente as primerAp5_0_0_, cliente0_.segundoApellidoCliente as segundoA6_0_0_ from clientes cliente0_ where cliente0_.idCliente=3
-02:31:56.414 [main] INFO  p6spy - 1 | statement  | delete from clientes where idCliente=3
-02:31:56.415 [main] INFO  p6spy - 0 | commit     | 
-02:31:56.415 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
-02:31:56.415 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getEntityManager(): se ha creado un EntityManager y se ha devuelto
-02:31:56.417 [main] INFO  p6spy - 0 | statement  | select cliente0_.idCliente as idClient1_0_, cliente0_.fechaAltaCliente as fechaAlt2_0_, cliente0_.nombreCliente as nombreCl3_0_, cliente0_.numIdentificacion as numIdent4_0_, cliente0_.primerApellidoCliente as primerAp5_0_, cliente0_.segundoApellidoCliente as segundoA6_0_ from clientes cliente0_
-02:31:56.421 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
-02:31:56.421 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método setUnidadPersistencia(String): se ha insertado la nueva unidadPersistencia: tests
-02:31:56.421 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
-02:31:56.421 [main] ERROR com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método crearConexion(): unidadPersistencia tiene el valor de tests
-02:31:56.426 [main] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: tests]
-02:31:56.436 [main] WARN  org.hibernate.orm.connections.pooling - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
-02:31:56.436 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001005: using driver [com.p6spy.engine.spy.P6SpyDriver] at URL [jdbc:p6spy:mysql://localhost/agendatest?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC]
-02:31:56.436 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001001: Connection properties: {user=root, password=****}
-02:31:56.437 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001003: Autocommit mode: false
-02:31:56.437 [main] INFO  org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20 (min=1)
-02:31:56.451 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
-02:31:56.462 [main] INFO  org.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@6c1cfa53] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
-02:31:56.463 [main] INFO  p6spy - 0 | commit     | 
-02:31:56.469 [main] INFO  p6spy - 5 | statement  | drop table if exists clientes
-02:31:56.470 [main] INFO  org.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@4d68b571] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
-02:31:56.470 [main] INFO  p6spy - 0 | commit     | 
-02:31:56.477 [main] INFO  p6spy - 6 | statement  | create table clientes (idCliente integer not null auto_increment, fechaAltaCliente datetime, nombreCliente varchar(45) not null, numIdentificacion varchar(9) not null, primerApellidoCliente varchar(45) not null, segundoApellidoCliente varchar(45), primary key (idCliente)) engine=MyISAM
-02:31:56.507 [main] INFO  p6spy - 28 | statement  | alter table clientes add constraint UK_df7sed26eio8uqvt7nh6caesj unique (numIdentificacion)
-02:31:56.514 [main] INFO  org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-02:31:56.515 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método crearConexion(): Creado EntityManagerFactory
-02:31:56.515 [main] INFO  com.ejer.hibernate.conexion.ConexionBaseDatos - Abierta conexión con la base de datos
-02:31:56.515 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
-02:31:56.515 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getEntityManager(): se ha creado un EntityManager y se ha devuelto
-02:31:56.518 [main] INFO  p6spy - 0 | statement  | select cliente0_.idCliente as idClient1_0_, cliente0_.fechaAltaCliente as fechaAlt2_0_, cliente0_.nombreCliente as nombreCl3_0_, cliente0_.numIdentificacion as numIdent4_0_, cliente0_.primerApellidoCliente as primerAp5_0_, cliente0_.segundoApellidoCliente as segundoA6_0_ from clientes cliente0_
-02:31:56.518 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
-02:31:56.518 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getEntityManager(): se ha creado un EntityManager y se ha devuelto
-02:31:56.522 [main] INFO  p6spy - 1 | statement  | insert into clientes (fechaAltaCliente, nombreCliente, numIdentificacion, primerApellidoCliente, segundoApellidoCliente) values ('2022-12-13T02:31:56.000+0100', 'Mario', '39029018L', 'Fernández', 'Alexis')
-02:31:56.523 [main] INFO  p6spy - 0 | commit     | 
-02:31:56.524 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
-02:31:56.524 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getEntityManager(): se ha creado un EntityManager y se ha devuelto
-02:31:56.527 [main] INFO  p6spy - 1 | statement  | insert into clientes (fechaAltaCliente, nombreCliente, numIdentificacion, primerApellidoCliente, segundoApellidoCliente) values ('2022-12-13T02:31:56.000+0100', 'Antonio', '07031947L', 'García', NULL)
-02:31:56.528 [main] INFO  p6spy - 0 | commit     | 
-02:31:56.528 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
-02:31:56.528 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getEntityManager(): se ha creado un EntityManager y se ha devuelto
-02:31:56.531 [main] INFO  p6spy - 1 | statement  | insert into clientes (fechaAltaCliente, nombreCliente, numIdentificacion, primerApellidoCliente, segundoApellidoCliente) values (NULL, 'Paco', '91906775V', 'Rodríguez', NULL)
-02:31:56.532 [main] INFO  p6spy - 0 | commit     | 
-02:31:56.533 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
-02:31:56.533 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getEntityManager(): se ha creado un EntityManager y se ha devuelto
-02:31:56.534 [main] INFO  p6spy - 0 | statement  | select cliente0_.idCliente as idClient1_0_, cliente0_.fechaAltaCliente as fechaAlt2_0_, cliente0_.nombreCliente as nombreCl3_0_, cliente0_.numIdentificacion as numIdent4_0_, cliente0_.primerApellidoCliente as primerAp5_0_, cliente0_.segundoApellidoCliente as segundoA6_0_ from clientes cliente0_
-02:31:56.536 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
-02:31:56.536 [main] INFO  org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl - HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
-02:31:56.536 [main] INFO  org.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@49f40c00] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
-02:31:56.537 [main] INFO  p6spy - 0 | commit     | 
-02:31:56.541 [main] INFO  p6spy - 3 | statement  | drop table if exists clientes
-02:31:56.542 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001008: Cleaning up connection pool [jdbc:p6spy:mysql://localhost/agendatest?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC]
-02:31:56.543 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método cerrarConexion(): se ha cerrado la conexión 
-02:31:56.543 [main] INFO  com.ejer.hibernate.conexion.ConexionBaseDatos - Cerrada la conexión con la base de datos
+11:37:26.792 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Creada instancia ConexionBaseDatos
+11:37:26.792 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
+11:37:26.807 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método setUnidadPersistencia(String): se ha insertado la nueva unidadPersistencia: tests
+11:37:26.807 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
+11:37:26.807 [main] ERROR com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método crearConexion(): unidadPersistencia tiene el valor de tests
+11:37:26.995 [main] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: tests]
+11:37:27.104 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {5.4.1.Final}
+11:37:27.463 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+11:37:27.963 [main] WARN  org.hibernate.orm.connections.pooling - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+11:37:27.979 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001005: using driver [com.p6spy.engine.spy.P6SpyDriver] at URL [jdbc:p6spy:mysql://localhost/agendatest?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC]
+11:37:27.979 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001001: Connection properties: {user=root, password=****}
+11:37:27.979 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001003: Autocommit mode: false
+11:37:27.979 [main] INFO  org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20 (min=1)
+11:37:28.260 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+11:37:29.276 [main] INFO  org.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@3b9632d1] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+11:37:29.276 [main] INFO  p6spy - 0 | commit     | 
+11:37:29.369 [main] INFO  p6spy - 3 | statement  | drop table if exists clientes
+11:37:29.385 [main] INFO  org.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@61f39bb] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+11:37:29.385 [main] INFO  p6spy - 0 | commit     | 
+11:37:29.385 [main] INFO  p6spy - 5 | statement  | create table clientes (idCliente integer not null auto_increment, fechaAltaCliente datetime, nombreCliente varchar(45) not null, numIdentificacion varchar(9) not null, primerApellidoCliente varchar(45) not null, segundoApellidoCliente varchar(45), primary key (idCliente)) engine=MyISAM
+11:37:29.431 [main] INFO  p6spy - 32 | statement  | alter table clientes add constraint UK_df7sed26eio8uqvt7nh6caesj unique (numIdentificacion)
+11:37:29.435 [main] INFO  org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+11:37:29.435 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método crearConexion(): Creado EntityManagerFactory
+11:37:29.435 [main] INFO  com.ejer.hibernate.conexion.ConexionBaseDatos - Abierta conexión con la base de datos
+11:37:29.450 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
+11:37:29.450 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getEntityManager(): se ha creado un EntityManager y se ha devuelto
+11:37:29.616 [main] INFO  p6spy - 1 | statement  | insert into clientes (fechaAltaCliente, nombreCliente, numIdentificacion, primerApellidoCliente, segundoApellidoCliente) values ('2022-12-13T11:37:29.000+0100', 'Mario', '39029018L', 'Fernández', 'Alexis')
+11:37:29.616 [main] INFO  p6spy - 0 | commit     | 
+11:37:29.616 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
+11:37:29.616 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getEntityManager(): se ha creado un EntityManager y se ha devuelto
+11:37:29.616 [main] INFO  p6spy - 0 | statement  | insert into clientes (fechaAltaCliente, nombreCliente, numIdentificacion, primerApellidoCliente, segundoApellidoCliente) values (NULL, 'Paco', '91906775V', 'Rodríguez', NULL)
+11:37:29.616 [main] INFO  p6spy - 0 | commit     | 
+11:37:29.632 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
+11:37:29.632 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getEntityManager(): se ha creado un EntityManager y se ha devuelto
+11:37:29.632 [main] INFO  p6spy - 0 | statement  | insert into clientes (fechaAltaCliente, nombreCliente, numIdentificacion, primerApellidoCliente, segundoApellidoCliente) values (NULL, 'Álvaro', '48026219B', 'Marqués', NULL)
+11:37:29.632 [main] INFO  p6spy - 0 | commit     | 
+11:37:29.632 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
+11:37:29.632 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getEntityManager(): se ha creado un EntityManager y se ha devuelto
+11:37:29.632 [main] INFO  p6spy - 0 | statement  | insert into clientes (fechaAltaCliente, nombreCliente, numIdentificacion, primerApellidoCliente, segundoApellidoCliente) values ('2022-12-13T11:37:29.000+0100', 'Antonio', '07031947L', 'García', NULL)
+11:37:29.632 [main] INFO  p6spy - 0 | commit     | 
+11:37:29.632 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
+11:37:29.632 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getEntityManager(): se ha creado un EntityManager y se ha devuelto
+11:37:29.632 [main] INFO  p6spy - 0 | statement  | insert into clientes (fechaAltaCliente, nombreCliente, numIdentificacion, primerApellidoCliente, segundoApellidoCliente) values (NULL, 'Laura', '15982705M', 'Lour', NULL)
+11:37:29.632 [main] INFO  p6spy - 0 | commit     | 
+11:37:29.632 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
+11:37:29.632 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getEntityManager(): se ha creado un EntityManager y se ha devuelto
+11:37:29.757 [main] INFO  p6spy - 4 | statement  | select cliente0_.idCliente as idClient1_0_, cliente0_.fechaAltaCliente as fechaAlt2_0_, cliente0_.nombreCliente as nombreCl3_0_, cliente0_.numIdentificacion as numIdent4_0_, cliente0_.primerApellidoCliente as primerAp5_0_, cliente0_.segundoApellidoCliente as segundoA6_0_ from clientes cliente0_ order by cliente0_.numIdentificacion ASC
+11:37:29.772 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
+11:37:29.772 [main] INFO  org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl - HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+11:37:29.772 [main] INFO  org.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@54e3658c] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+11:37:29.772 [main] INFO  p6spy - 0 | commit     | 
+11:37:29.788 [main] INFO  p6spy - 3 | statement  | drop table if exists clientes
+11:37:29.788 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001008: Cleaning up connection pool [jdbc:p6spy:mysql://localhost/agendatest?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC]
+11:37:29.788 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método cerrarConexion(): se ha cerrado la conexión 
+11:37:29.788 [main] INFO  com.ejer.hibernate.conexion.ConexionBaseDatos - Cerrada la conexión con la base de datos
+11:37:29.804 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
+11:37:29.804 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método setUnidadPersistencia(String): se ha insertado la nueva unidadPersistencia: tests
+11:37:29.804 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
+11:37:29.804 [main] ERROR com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método crearConexion(): unidadPersistencia tiene el valor de tests
+11:37:29.804 [main] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: tests]
+11:37:29.819 [main] WARN  org.hibernate.orm.connections.pooling - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+11:37:29.819 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001005: using driver [com.p6spy.engine.spy.P6SpyDriver] at URL [jdbc:p6spy:mysql://localhost/agendatest?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC]
+11:37:29.819 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001001: Connection properties: {user=root, password=****}
+11:37:29.819 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001003: Autocommit mode: false
+11:37:29.819 [main] INFO  org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20 (min=1)
+11:37:29.819 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+11:37:29.866 [main] INFO  org.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@4f89331f] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+11:37:29.866 [main] INFO  p6spy - 0 | commit     | 
+11:37:29.866 [main] INFO  p6spy - 0 | statement  | drop table if exists clientes
+11:37:29.866 [main] INFO  org.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@618ff5c2] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+11:37:29.866 [main] INFO  p6spy - 0 | commit     | 
+11:37:29.897 [main] INFO  p6spy - 33 | statement  | create table clientes (idCliente integer not null auto_increment, fechaAltaCliente datetime, nombreCliente varchar(45) not null, numIdentificacion varchar(9) not null, primerApellidoCliente varchar(45) not null, segundoApellidoCliente varchar(45), primary key (idCliente)) engine=MyISAM
+11:37:29.944 [main] INFO  p6spy - 44 | statement  | alter table clientes add constraint UK_df7sed26eio8uqvt7nh6caesj unique (numIdentificacion)
+11:37:29.960 [main] INFO  org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+11:37:29.960 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método crearConexion(): Creado EntityManagerFactory
+11:37:29.960 [main] INFO  com.ejer.hibernate.conexion.ConexionBaseDatos - Abierta conexión con la base de datos
+11:37:29.960 [main] DEBUG com.ejer.service.ClienteService - Clase ClienteControlador Método validarNumeroDocumentacion(final String numeroIdentificacion): se va a comprobar 39029018L
+11:37:29.960 [main] INFO  com.ejer.service.ClienteService - Se va a comprobar el tipo de Número de Identificación
+11:37:29.960 [main] DEBUG com.ejer.service.ClienteService - Clase ClienteService Método validarNie(final String): se va a comprobar el nie 39029018L
+11:37:29.960 [main] INFO  com.ejer.service.ClienteService - El número de identificación es un NIE, comprobando que sea correcto
+11:37:29.960 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
+11:37:29.960 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getEntityManager(): se ha creado un EntityManager y se ha devuelto
+11:37:29.975 [main] INFO  p6spy - 2 | statement  | insert into clientes (fechaAltaCliente, nombreCliente, numIdentificacion, primerApellidoCliente, segundoApellidoCliente) values ('2022-12-13T11:37:29.000+0100', 'Mario', '39029018L', 'Fernández', 'Alexis')
+11:37:29.975 [main] INFO  p6spy - 0 | commit     | 
+11:37:29.975 [main] DEBUG com.ejer.service.ClienteService - Clase ClienteControlador Método validarNumeroDocumentacion(final String numeroIdentificacion): se va a comprobar 07031947L
+11:37:29.975 [main] INFO  com.ejer.service.ClienteService - Se va a comprobar el tipo de Número de Identificación
+11:37:29.975 [main] DEBUG com.ejer.service.ClienteService - Clase ClienteService Método validarNie(final String): se va a comprobar el nie 07031947L
+11:37:29.975 [main] INFO  com.ejer.service.ClienteService - El número de identificación es un NIE, comprobando que sea correcto
+11:37:29.975 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
+11:37:29.975 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getEntityManager(): se ha creado un EntityManager y se ha devuelto
+11:37:29.975 [main] INFO  p6spy - 0 | statement  | insert into clientes (fechaAltaCliente, nombreCliente, numIdentificacion, primerApellidoCliente, segundoApellidoCliente) values ('2022-12-13T11:37:29.000+0100', 'Antonio', '07031947L', 'García', NULL)
+11:37:29.975 [main] INFO  p6spy - 0 | commit     | 
+11:37:29.975 [main] DEBUG com.ejer.service.ClienteService - Clase ClienteControlador Método validarNumeroDocumentacion(final String numeroIdentificacion): se va a comprobar 91906775V
+11:37:29.975 [main] INFO  com.ejer.service.ClienteService - Se va a comprobar el tipo de Número de Identificación
+11:37:29.975 [main] DEBUG com.ejer.service.ClienteService - Clase ClienteService Método validarNie(final String): se va a comprobar el nie 91906775V
+11:37:29.975 [main] INFO  com.ejer.service.ClienteService - El número de identificación es un NIE, comprobando que sea correcto
+11:37:29.975 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
+11:37:29.975 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getEntityManager(): se ha creado un EntityManager y se ha devuelto
+11:37:29.975 [main] INFO  p6spy - 0 | statement  | insert into clientes (fechaAltaCliente, nombreCliente, numIdentificacion, primerApellidoCliente, segundoApellidoCliente) values (NULL, 'Paco', '91906775V', 'Rodríguez', NULL)
+11:37:29.975 [main] INFO  p6spy - 0 | commit     | 
+11:37:29.975 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
+11:37:29.975 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getEntityManager(): se ha creado un EntityManager y se ha devuelto
+11:37:29.991 [main] INFO  p6spy - 0 | statement  | select cliente0_.idCliente as idClient1_0_, cliente0_.fechaAltaCliente as fechaAlt2_0_, cliente0_.nombreCliente as nombreCl3_0_, cliente0_.numIdentificacion as numIdent4_0_, cliente0_.primerApellidoCliente as primerAp5_0_, cliente0_.segundoApellidoCliente as segundoA6_0_ from clientes cliente0_ where cliente0_.numIdentificacion='07031947L'
+11:37:29.991 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
+11:37:29.991 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getEntityManager(): se ha creado un EntityManager y se ha devuelto
+11:37:30.007 [main] INFO  p6spy - 0 | statement  | select cliente0_.idCliente as idClient1_0_0_, cliente0_.fechaAltaCliente as fechaAlt2_0_0_, cliente0_.nombreCliente as nombreCl3_0_0_, cliente0_.numIdentificacion as numIdent4_0_0_, cliente0_.primerApellidoCliente as primerAp5_0_0_, cliente0_.segundoApellidoCliente as segundoA6_0_0_ from clientes cliente0_ where cliente0_.idCliente=2
+11:37:30.022 [main] INFO  p6spy - 0 | statement  | delete from clientes where idCliente=2
+11:37:30.022 [main] INFO  p6spy - 0 | commit     | 
+11:37:30.022 [main] DEBUG com.ejer.hibernate.dao.ClienteDao - Clase ClienteDao Método recogerListaElementos(): se va a recoger la lista de elementos
+11:37:30.022 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
+11:37:30.022 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getEntityManager(): se ha creado un EntityManager y se ha devuelto
+11:37:30.022 [main] INFO  com.ejer.hibernate.dao.ClienteDao - Recogida lista de elementos Cliente
+11:37:30.022 [main] INFO  p6spy - 0 | statement  | select cliente0_.idCliente as idClient1_0_, cliente0_.fechaAltaCliente as fechaAlt2_0_, cliente0_.nombreCliente as nombreCl3_0_, cliente0_.numIdentificacion as numIdent4_0_, cliente0_.primerApellidoCliente as primerAp5_0_, cliente0_.segundoApellidoCliente as segundoA6_0_ from clientes cliente0_
+11:37:30.022 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
+11:37:30.022 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getEntityManager(): se ha creado un EntityManager y se ha devuelto
+11:37:30.022 [main] INFO  p6spy - 0 | statement  | select cliente0_.idCliente as idClient1_0_, cliente0_.fechaAltaCliente as fechaAlt2_0_, cliente0_.nombreCliente as nombreCl3_0_, cliente0_.numIdentificacion as numIdent4_0_, cliente0_.primerApellidoCliente as primerAp5_0_, cliente0_.segundoApellidoCliente as segundoA6_0_ from clientes cliente0_ where cliente0_.numIdentificacion='91906775V'
+11:37:30.022 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
+11:37:30.022 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getEntityManager(): se ha creado un EntityManager y se ha devuelto
+11:37:30.038 [main] INFO  p6spy - 0 | statement  | select cliente0_.idCliente as idClient1_0_0_, cliente0_.fechaAltaCliente as fechaAlt2_0_0_, cliente0_.nombreCliente as nombreCl3_0_0_, cliente0_.numIdentificacion as numIdent4_0_0_, cliente0_.primerApellidoCliente as primerAp5_0_0_, cliente0_.segundoApellidoCliente as segundoA6_0_0_ from clientes cliente0_ where cliente0_.idCliente=3
+11:37:30.038 [main] INFO  p6spy - 0 | statement  | delete from clientes where idCliente=3
+11:37:30.038 [main] INFO  p6spy - 0 | commit     | 
+11:37:30.038 [main] DEBUG com.ejer.hibernate.dao.ClienteDao - Clase ClienteDao Método recogerListaElementos(): se va a recoger la lista de elementos
+11:37:30.038 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
+11:37:30.038 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getEntityManager(): se ha creado un EntityManager y se ha devuelto
+11:37:30.038 [main] INFO  com.ejer.hibernate.dao.ClienteDao - Recogida lista de elementos Cliente
+11:37:30.038 [main] INFO  p6spy - 0 | statement  | select cliente0_.idCliente as idClient1_0_, cliente0_.fechaAltaCliente as fechaAlt2_0_, cliente0_.nombreCliente as nombreCl3_0_, cliente0_.numIdentificacion as numIdent4_0_, cliente0_.primerApellidoCliente as primerAp5_0_, cliente0_.segundoApellidoCliente as segundoA6_0_ from clientes cliente0_
+11:37:30.038 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
+11:37:30.038 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método setUnidadPersistencia(String): se ha insertado la nueva unidadPersistencia: tests
+11:37:30.038 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
+11:37:30.038 [main] ERROR com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método crearConexion(): unidadPersistencia tiene el valor de tests
+11:37:30.053 [main] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: tests]
+11:37:30.053 [main] WARN  org.hibernate.orm.connections.pooling - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+11:37:30.053 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001005: using driver [com.p6spy.engine.spy.P6SpyDriver] at URL [jdbc:p6spy:mysql://localhost/agendatest?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC]
+11:37:30.053 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001001: Connection properties: {user=root, password=****}
+11:37:30.053 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001003: Autocommit mode: false
+11:37:30.053 [main] INFO  org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20 (min=1)
+11:37:30.069 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+11:37:30.085 [main] INFO  org.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@70730db] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+11:37:30.085 [main] INFO  p6spy - 0 | commit     | 
+11:37:30.085 [main] INFO  p6spy - 2 | statement  | drop table if exists clientes
+11:37:30.085 [main] INFO  org.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@5793b87] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+11:37:30.085 [main] INFO  p6spy - 0 | commit     | 
+11:37:30.100 [main] INFO  p6spy - 7 | statement  | create table clientes (idCliente integer not null auto_increment, fechaAltaCliente datetime, nombreCliente varchar(45) not null, numIdentificacion varchar(9) not null, primerApellidoCliente varchar(45) not null, segundoApellidoCliente varchar(45), primary key (idCliente)) engine=MyISAM
+11:37:30.116 [main] INFO  p6spy - 9 | statement  | alter table clientes add constraint UK_df7sed26eio8uqvt7nh6caesj unique (numIdentificacion)
+11:37:30.116 [main] INFO  org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+11:37:30.116 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método crearConexion(): Creado EntityManagerFactory
+11:37:30.116 [main] INFO  com.ejer.hibernate.conexion.ConexionBaseDatos - Abierta conexión con la base de datos
+11:37:30.116 [main] DEBUG com.ejer.hibernate.dao.ClienteDao - Clase ClienteDao Método recogerListaElementos(): se va a recoger la lista de elementos
+11:37:30.116 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
+11:37:30.116 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getEntityManager(): se ha creado un EntityManager y se ha devuelto
+11:37:30.116 [main] INFO  com.ejer.hibernate.dao.ClienteDao - Recogida lista de elementos Cliente
+11:37:30.132 [main] INFO  p6spy - 1 | statement  | select cliente0_.idCliente as idClient1_0_, cliente0_.fechaAltaCliente as fechaAlt2_0_, cliente0_.nombreCliente as nombreCl3_0_, cliente0_.numIdentificacion as numIdent4_0_, cliente0_.primerApellidoCliente as primerAp5_0_, cliente0_.segundoApellidoCliente as segundoA6_0_ from clientes cliente0_
+11:37:30.132 [main] DEBUG com.ejer.service.ClienteService - Clase ClienteControlador Método validarNumeroDocumentacion(final String numeroIdentificacion): se va a comprobar 39029018L
+11:37:30.132 [main] INFO  com.ejer.service.ClienteService - Se va a comprobar el tipo de Número de Identificación
+11:37:30.132 [main] DEBUG com.ejer.service.ClienteService - Clase ClienteService Método validarNie(final String): se va a comprobar el nie 39029018L
+11:37:30.132 [main] INFO  com.ejer.service.ClienteService - El número de identificación es un NIE, comprobando que sea correcto
+11:37:30.132 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
+11:37:30.132 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getEntityManager(): se ha creado un EntityManager y se ha devuelto
+11:37:30.132 [main] INFO  p6spy - 0 | statement  | insert into clientes (fechaAltaCliente, nombreCliente, numIdentificacion, primerApellidoCliente, segundoApellidoCliente) values ('2022-12-13T11:37:30.000+0100', 'Mario', '39029018L', 'Fernández', 'Alexis')
+11:37:30.132 [main] INFO  p6spy - 0 | commit     | 
+11:37:30.132 [main] DEBUG com.ejer.service.ClienteService - Clase ClienteControlador Método validarNumeroDocumentacion(final String numeroIdentificacion): se va a comprobar 07031947L
+11:37:30.132 [main] INFO  com.ejer.service.ClienteService - Se va a comprobar el tipo de Número de Identificación
+11:37:30.132 [main] DEBUG com.ejer.service.ClienteService - Clase ClienteService Método validarNie(final String): se va a comprobar el nie 07031947L
+11:37:30.132 [main] INFO  com.ejer.service.ClienteService - El número de identificación es un NIE, comprobando que sea correcto
+11:37:30.132 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
+11:37:30.132 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getEntityManager(): se ha creado un EntityManager y se ha devuelto
+11:37:30.132 [main] INFO  p6spy - 0 | statement  | insert into clientes (fechaAltaCliente, nombreCliente, numIdentificacion, primerApellidoCliente, segundoApellidoCliente) values ('2022-12-13T11:37:30.000+0100', 'Antonio', '07031947L', 'García', NULL)
+11:37:30.132 [main] INFO  p6spy - 0 | commit     | 
+11:37:30.132 [main] DEBUG com.ejer.service.ClienteService - Clase ClienteControlador Método validarNumeroDocumentacion(final String numeroIdentificacion): se va a comprobar 91906775V
+11:37:30.132 [main] INFO  com.ejer.service.ClienteService - Se va a comprobar el tipo de Número de Identificación
+11:37:30.132 [main] DEBUG com.ejer.service.ClienteService - Clase ClienteService Método validarNie(final String): se va a comprobar el nie 91906775V
+11:37:30.132 [main] INFO  com.ejer.service.ClienteService - El número de identificación es un NIE, comprobando que sea correcto
+11:37:30.132 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
+11:37:30.132 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getEntityManager(): se ha creado un EntityManager y se ha devuelto
+11:37:30.132 [main] INFO  p6spy - 0 | statement  | insert into clientes (fechaAltaCliente, nombreCliente, numIdentificacion, primerApellidoCliente, segundoApellidoCliente) values (NULL, 'Paco', '91906775V', 'Rodríguez', NULL)
+11:37:30.132 [main] INFO  p6spy - 0 | commit     | 
+11:37:30.132 [main] DEBUG com.ejer.hibernate.dao.ClienteDao - Clase ClienteDao Método recogerListaElementos(): se va a recoger la lista de elementos
+11:37:30.132 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
+11:37:30.132 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getEntityManager(): se ha creado un EntityManager y se ha devuelto
+11:37:30.132 [main] INFO  com.ejer.hibernate.dao.ClienteDao - Recogida lista de elementos Cliente
+11:37:30.147 [main] INFO  p6spy - 0 | statement  | select cliente0_.idCliente as idClient1_0_, cliente0_.fechaAltaCliente as fechaAlt2_0_, cliente0_.nombreCliente as nombreCl3_0_, cliente0_.numIdentificacion as numIdent4_0_, cliente0_.primerApellidoCliente as primerAp5_0_, cliente0_.segundoApellidoCliente as segundoA6_0_ from clientes cliente0_
+11:37:30.147 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
+11:37:30.147 [main] INFO  org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl - HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+11:37:30.147 [main] INFO  org.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@671c4166] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+11:37:30.147 [main] INFO  p6spy - 0 | commit     | 
+11:37:30.147 [main] INFO  p6spy - 1 | statement  | drop table if exists clientes
+11:37:30.147 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001008: Cleaning up connection pool [jdbc:p6spy:mysql://localhost/agendatest?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC]
+11:37:30.163 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método cerrarConexion(): se ha cerrado la conexión 
+11:37:30.163 [main] INFO  com.ejer.hibernate.conexion.ConexionBaseDatos - Cerrada la conexión con la base de datos
+11:37:30.163 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
+11:37:30.163 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método setUnidadPersistencia(String): se ha insertado la nueva unidadPersistencia: tests
+11:37:30.163 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
+11:37:30.163 [main] ERROR com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método crearConexion(): unidadPersistencia tiene el valor de tests
+11:37:30.163 [main] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: tests]
+11:37:30.178 [main] WARN  org.hibernate.orm.connections.pooling - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+11:37:30.178 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001005: using driver [com.p6spy.engine.spy.P6SpyDriver] at URL [jdbc:p6spy:mysql://localhost/agendatest?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC]
+11:37:30.178 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001001: Connection properties: {user=root, password=****}
+11:37:30.178 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001003: Autocommit mode: false
+11:37:30.178 [main] INFO  org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20 (min=1)
+11:37:30.178 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+11:37:30.225 [main] INFO  org.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@2cde651b] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+11:37:30.225 [main] INFO  p6spy - 0 | commit     | 
+11:37:30.225 [main] INFO  p6spy - 1 | statement  | drop table if exists clientes
+11:37:30.225 [main] INFO  org.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@534e58b6] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+11:37:30.225 [main] INFO  p6spy - 0 | commit     | 
+11:37:30.225 [main] INFO  p6spy - 4 | statement  | create table clientes (idCliente integer not null auto_increment, fechaAltaCliente datetime, nombreCliente varchar(45) not null, numIdentificacion varchar(9) not null, primerApellidoCliente varchar(45) not null, segundoApellidoCliente varchar(45), primary key (idCliente)) engine=MyISAM
+11:37:30.241 [main] INFO  p6spy - 9 | statement  | alter table clientes add constraint UK_df7sed26eio8uqvt7nh6caesj unique (numIdentificacion)
+11:37:30.257 [main] INFO  org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+11:37:30.257 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método crearConexion(): Creado EntityManagerFactory
+11:37:30.257 [main] INFO  com.ejer.hibernate.conexion.ConexionBaseDatos - Abierta conexión con la base de datos
+11:37:30.257 [main] DEBUG com.ejer.service.ClienteService - Clase ClienteControlador Método validarNumeroDocumentacion(final String numeroIdentificacion): se va a comprobar 39029018L
+11:37:30.257 [main] INFO  com.ejer.service.ClienteService - Se va a comprobar el tipo de Número de Identificación
+11:37:30.257 [main] DEBUG com.ejer.service.ClienteService - Clase ClienteService Método validarNie(final String): se va a comprobar el nie 39029018L
+11:37:30.257 [main] INFO  com.ejer.service.ClienteService - El número de identificación es un NIE, comprobando que sea correcto
+11:37:30.257 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
+11:37:30.257 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getEntityManager(): se ha creado un EntityManager y se ha devuelto
+11:37:30.257 [main] INFO  p6spy - 1 | statement  | insert into clientes (fechaAltaCliente, nombreCliente, numIdentificacion, primerApellidoCliente, segundoApellidoCliente) values ('2022-12-13T11:37:30.000+0100', 'Mario', '39029018L', 'Fernández', 'Alexis')
+11:37:30.257 [main] INFO  p6spy - 0 | commit     | 
+11:37:30.257 [main] DEBUG com.ejer.service.ClienteService - Clase ClienteControlador Método validarNumeroDocumentacion(final String numeroIdentificacion): se va a comprobar 07031947L
+11:37:30.257 [main] INFO  com.ejer.service.ClienteService - Se va a comprobar el tipo de Número de Identificación
+11:37:30.257 [main] DEBUG com.ejer.service.ClienteService - Clase ClienteService Método validarNie(final String): se va a comprobar el nie 07031947L
+11:37:30.257 [main] INFO  com.ejer.service.ClienteService - El número de identificación es un NIE, comprobando que sea correcto
+11:37:30.257 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
+11:37:30.257 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getEntityManager(): se ha creado un EntityManager y se ha devuelto
+11:37:30.257 [main] INFO  p6spy - 0 | statement  | insert into clientes (fechaAltaCliente, nombreCliente, numIdentificacion, primerApellidoCliente, segundoApellidoCliente) values ('2022-12-13T11:37:30.000+0100', 'Antonio', '07031947L', 'García', NULL)
+11:37:30.257 [main] INFO  p6spy - 0 | commit     | 
+11:37:30.257 [main] DEBUG com.ejer.service.ClienteService - Clase ClienteControlador Método validarNumeroDocumentacion(final String numeroIdentificacion): se va a comprobar 91906775V
+11:37:30.257 [main] INFO  com.ejer.service.ClienteService - Se va a comprobar el tipo de Número de Identificación
+11:37:30.257 [main] DEBUG com.ejer.service.ClienteService - Clase ClienteService Método validarNie(final String): se va a comprobar el nie 91906775V
+11:37:30.257 [main] INFO  com.ejer.service.ClienteService - El número de identificación es un NIE, comprobando que sea correcto
+11:37:30.257 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
+11:37:30.257 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getEntityManager(): se ha creado un EntityManager y se ha devuelto
+11:37:30.257 [main] INFO  p6spy - 0 | statement  | insert into clientes (fechaAltaCliente, nombreCliente, numIdentificacion, primerApellidoCliente, segundoApellidoCliente) values (NULL, 'Paco', '91906775V', 'Rodríguez', NULL)
+11:37:30.257 [main] INFO  p6spy - 0 | commit     | 
+11:37:30.257 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
+11:37:30.257 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getEntityManager(): se ha creado un EntityManager y se ha devuelto
+11:37:30.272 [main] INFO  p6spy - 0 | statement  | select cliente0_.idCliente as idClient1_0_, cliente0_.fechaAltaCliente as fechaAlt2_0_, cliente0_.nombreCliente as nombreCl3_0_, cliente0_.numIdentificacion as numIdent4_0_, cliente0_.primerApellidoCliente as primerAp5_0_, cliente0_.segundoApellidoCliente as segundoA6_0_ from clientes cliente0_ where cliente0_.numIdentificacion='39029018L'
+11:37:30.272 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
+11:37:30.272 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getEntityManager(): se ha creado un EntityManager y se ha devuelto
+11:37:30.272 [main] INFO  p6spy - 0 | statement  | select cliente0_.idCliente as idClient1_0_, cliente0_.fechaAltaCliente as fechaAlt2_0_, cliente0_.nombreCliente as nombreCl3_0_, cliente0_.numIdentificacion as numIdent4_0_, cliente0_.primerApellidoCliente as primerAp5_0_, cliente0_.segundoApellidoCliente as segundoA6_0_ from clientes cliente0_ where cliente0_.numIdentificacion='07031947L'
+11:37:30.272 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
+11:37:30.272 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getEntityManager(): se ha creado un EntityManager y se ha devuelto
+11:37:30.272 [main] INFO  p6spy - 0 | statement  | select cliente0_.idCliente as idClient1_0_, cliente0_.fechaAltaCliente as fechaAlt2_0_, cliente0_.nombreCliente as nombreCl3_0_, cliente0_.numIdentificacion as numIdent4_0_, cliente0_.primerApellidoCliente as primerAp5_0_, cliente0_.segundoApellidoCliente as segundoA6_0_ from clientes cliente0_ where cliente0_.numIdentificacion='91906775V'
+11:37:30.272 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
+11:37:30.272 [main] INFO  org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl - HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+11:37:30.272 [main] INFO  org.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@196ae579] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+11:37:30.272 [main] INFO  p6spy - 0 | commit     | 
+11:37:30.272 [main] INFO  p6spy - 2 | statement  | drop table if exists clientes
+11:37:30.272 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001008: Cleaning up connection pool [jdbc:p6spy:mysql://localhost/agendatest?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC]
+11:37:30.272 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método cerrarConexion(): se ha cerrado la conexión 
+11:37:30.272 [main] INFO  com.ejer.hibernate.conexion.ConexionBaseDatos - Cerrada la conexión con la base de datos

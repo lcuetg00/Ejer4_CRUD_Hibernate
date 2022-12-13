@@ -23,13 +23,19 @@ public class ClienteDao implements IOperacionesDao<Cliente>{
     static private final Logger LOGGER = LoggerFactory.getLogger(ClienteDao.class.getName());
 
     /**
-     * Devuelve una lista con todos los elementos de la tabla 'cliente'
+     * Devuelve una lista con todos los elementos de la entidad Cliente en la base de datos
      * @return List con elementos de tipo Cliente
      */
     public List recogerListaElementos() {
+        if(LOGGER.isDebugEnabled()) {
+            LOGGER.debug("Clase ClienteDao Método recogerListaElementos(): se va a recoger la lista de elementos");
+        }
         EntityManager entityManager = ConexionBaseDatos.getInstance().getEntityManager();
         String query = "SELECT c FROM Cliente c";
         TypedQuery<Cliente> typedQuery = entityManager.createQuery(query, Cliente.class);
+        if(LOGGER.isInfoEnabled()) {
+            LOGGER.info("Recogida lista de elementos Cliente");
+        }
         try {
             return typedQuery.getResultList();
 
@@ -43,7 +49,8 @@ public class ClienteDao implements IOperacionesDao<Cliente>{
     }
 
     /**
-     * Devuelve una lista con todos los elementos de la tabla 'cliente' que estarán ordenador por su DNI
+     * Devuelve una lista con todos los elementos de la entidad Cliente en la base de datos
+     * Esta lista estará ordenadora por el número de identificación de cada cliente
      * @return List con elementos de tipo Cliente ordenada
      */
     public List recogerListaElementosOrdenadosDNI() {
@@ -63,11 +70,11 @@ public class ClienteDao implements IOperacionesDao<Cliente>{
     }
 
     /**
-     * Inserta un elemento de tipo 'Cliente' en la tabla 'cliente'
+     * Inserta un elemento de tipo Cliente en la base de datos
      * @param cliente
      * @throws IllegalArgumentException
      */
-    public void insertarElemento(Cliente cliente) throws IllegalArgumentException {
+    public void insertarElemento(final Cliente cliente) throws IllegalArgumentException {
         if(cliente == null) {
             throw new IllegalArgumentException();
         }
@@ -93,10 +100,10 @@ public class ClienteDao implements IOperacionesDao<Cliente>{
     }
 
     /**
-     * Elimina un elemento de tipo 'Cliente' en la tabla 'cliente'
+     * Elimina un elemento de tipo Cliente en la base de datos
      * @param cliente
      */
-    public void eliminarElemento(Cliente cliente) throws IllegalArgumentException {
+    public void eliminarElemento(final Cliente cliente) throws IllegalArgumentException {
         if(cliente == null) {
             throw new IllegalArgumentException();
         }
@@ -105,8 +112,8 @@ public class ClienteDao implements IOperacionesDao<Cliente>{
         try {
             transaction = entityManager.getTransaction();
             transaction.begin();
-
-            entityManager.remove(entityManager.contains(cliente) ? cliente : entityManager.merge(cliente));
+            //entityManager.contains(cliente) ? cliente : entityManager.merge(cliente)
+            entityManager.remove(entityManager.merge(cliente));
 
             transaction.commit();
 
@@ -120,9 +127,20 @@ public class ClienteDao implements IOperacionesDao<Cliente>{
             entityManager.close();
         }
 
-        }
+    }
 
-    public Cliente getCliente(String numIdentificacion) throws IllegalArgumentException, NoSuchElementException {
+    public void actualizarElemento(final Cliente cliente) {
+
+    }
+
+    /**
+     *
+     * @param numIdentificacion
+     * @return
+     * @throws IllegalArgumentException
+     * @throws NoSuchElementException
+     */
+    public Cliente getCliente(final String numIdentificacion) throws IllegalArgumentException, NoSuchElementException {
         if(numIdentificacion == null) {
             throw new IllegalArgumentException();
         }

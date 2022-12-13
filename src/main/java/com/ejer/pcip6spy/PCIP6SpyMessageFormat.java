@@ -11,15 +11,15 @@ public class PCIP6SpyMessageFormat implements MessageFormattingStrategy {
 		StringBuilder sb = new StringBuilder();
 		Formatter fmt = new Formatter(sb);
 		
-		// mostrar� el tiempo en la precisi�n que lo env�e P6LogQuery.doLog (a d�a 15/12/2018 la tenemos sobrescrita para que la pase en microsegundos)
+		//
 		fmt.format("%,1d", elapsed);
 		fmt.format(" | %-10s", category);
 		fmt.format(" | %s", sql);
 		
-		// Ejemplo de como se emplear�a el formateador de SQL de Hibernate
+		// Ejemplo de como se emplearía el formateador de SQL de Hibernate
 		//fmt.format("|%s", new BasicFormatterImpl().format(sql));
 		
-		// cerramos el formateador
+		//Cerramos el formateador
 		fmt.close();
 		
 		return sb.toString();
