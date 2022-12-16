@@ -4,6 +4,9 @@ import java.util.Formatter;
 
 import com.p6spy.engine.spy.appender.MessageFormattingStrategy;
 
+/**
+ * Clase encargada del formato de mensajes de P6SPY
+ */
 public class PCIP6SpyMessageFormat implements MessageFormattingStrategy {
 
 	@Override

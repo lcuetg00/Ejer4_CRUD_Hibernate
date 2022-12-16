@@ -1,31 +1,31 @@
 package com.ejer.service;
 
-import com.ejer.hibernate.dao.ClienteDao;
+import com.ejer.hibernate.dao.ClienteDAO;
 import com.ejer.hibernate.entity.Cliente;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.security.InvalidParameterException;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * Clase ClienteService
  * Se comunica con ClienteDao para realizar operaciones con la base de datos
+ * @author Luis Cueto
  */
-public class ClienteService {
+public class ClienteService implements IService<Cliente> {
 
     /**
      * Constructor que inicializa una isntancia de ClienteDao
      */
     public ClienteService() {
-        clienteDao = new ClienteDao();
+        clienteDao = new ClienteDAO();
     }
 
     /**
      * Instancia de ClienteDao
      */
-    private ClienteDao clienteDao;
+    private ClienteDAO clienteDao;
 
     /**
      * Patrón que siguen los NIE: números más una letra final
@@ -50,7 +50,7 @@ public class ClienteService {
     /**
      * Logger para la clase ServiceCliente
      */
-    static private final Logger LOGGER = LogManager.getLogger(ClienteService.class.getName());
+    static private final Logger LOGGER = LogManager.getLogger(ClienteService.class);
 
     /**
      * Comprueba si un número de identificación es válido
@@ -126,7 +126,11 @@ public class ClienteService {
         if(LOGGER.isInfoEnabled()) {
             LOGGER.info("El número de identificación es un NIF, comprobando que sea correcto");
         }
-        return false;
+
+
+        //TODO terminar validacion nif
+
+        return true;
     }
 
     /**
@@ -143,21 +147,24 @@ public class ClienteService {
             LOGGER.info("El número de identificación es un CIF, comprobando que sea correcto");
         }
 
-        return false;
+        //TODO terminar validacion cif
+
+        return true;
     }
 
     /**
      * Llama a ClienteDao para recoger una lista de todos los elementos Cliente de la base de datos
-     * {@link ClienteDao#recogerListaElementos()}
+     * {@link ClienteDAO#getListaElementos()}
      * @return
      */
-    public List recogerListaElementos() {
-        return clienteDao.recogerListaElementos();
+    public List getListaElementos() {
+        return clienteDao.getListaElementos();
     }
     
     public void eliminarCliente(final String numIdentificacion) {
+        //FIXME validar numero de identificacion
         //if(this.validarNumeroDocumentacion(cliente.getNumIdentificacion())) {
-        Cliente clienteEliminar = clienteDao.getCliente(numIdentificacion);
+        Cliente clienteEliminar = clienteDao.findCliente(numIdentificacion);
         //validar que no hay un cliente con el mismo dni
 //        } else {
 //                LOGGER.error("El Número de Identificación de incorrecto");
@@ -167,19 +174,19 @@ public class ClienteService {
         clienteDao.eliminarElemento(clienteEliminar);
     }
 
-    public void insertarCliente(final Cliente cliente) {
+    public void insertarElemento(final Cliente cliente) {
         if(this.validarNumeroDocumentacion(cliente.getNumIdentificacion())) {
             clienteDao.insertarElemento(cliente);
-        //validar que no hay un cliente con el mismo dni
-        //si lo hay, lanza SQLIntegrityConstraintViolationException
+            //FIXME recoger excepcion si hay un cliente con el mismo nombre?, si no lanza SQLIntegrityConstraintViolationException
+
         } else {
             LOGGER.error("El Número de Identificación de incorrecto");
         }
 
     }
 
-    public Cliente getCliente(final String numIdentificacion) {
-        return clienteDao.getCliente(numIdentificacion);
+    public Cliente findCliente(final String numIdentificacion) {
+        return clienteDao.findCliente(numIdentificacion);
     }
 
 }

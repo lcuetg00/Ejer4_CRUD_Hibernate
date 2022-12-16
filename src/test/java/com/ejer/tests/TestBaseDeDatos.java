@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.ejer.controller.ClienteControlador;
 import com.ejer.hibernate.conexion.ConexionBaseDatos;
-import com.ejer.hibernate.dao.ClienteDao;
+import com.ejer.hibernate.dao.ClienteDAO;
 import com.ejer.hibernate.entity.Cliente;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -17,7 +17,7 @@ import java.util.List;
 
 class TestBaseDeDatos {
 
-    private ClienteDao cliDao;
+    private ClienteDAO cliDao;
     private ClienteControlador clienteControlador;
     private LocalDateTime fechaAltaCliente1;
     private LocalDateTime fechaAltaCliente2;
@@ -48,7 +48,7 @@ class TestBaseDeDatos {
     void testInsertarCliente() {
         clienteControlador = new ClienteControlador();
 
-        List<Cliente> listavacia = clienteControlador.recogerListaElementos();
+        List<Cliente> listavacia = clienteControlador.getListaElementos();
         //Tenemos 0 elementos en la base de datos:
         assertEquals(listavacia.size(),0);
 
@@ -56,7 +56,7 @@ class TestBaseDeDatos {
         clienteControlador.insertarCliente(cliente2);
         clienteControlador.insertarCliente(cliente3);
 
-        List<Cliente> lista = clienteControlador.recogerListaElementos();
+        List<Cliente> lista = clienteControlador.getListaElementos();
         //Tenemos 3 elementos en la base de datos ahora:
         assertEquals(lista.size(),3);
 
@@ -68,7 +68,7 @@ class TestBaseDeDatos {
     }
 
     @Test
-    @DisplayName("Test para consultar 1 cliente")
+    @DisplayName("Test para recoger los datos de 1 cliente")
     void testGetCliente() {
         clienteControlador = new ClienteControlador();
 
@@ -76,9 +76,9 @@ class TestBaseDeDatos {
         clienteControlador.insertarCliente(cliente2);
         clienteControlador.insertarCliente(cliente3);
 
-        assertEquals(clienteControlador.getCliente(cliente1.getNumIdentificacion()).toString(), "Cliente: Número de Identificacion: 39029018L | Nombre: Mario | Primer Apellido: Fernández | Segundo Apellido: Alexis | Fecha de Alta: "+this.fechaAltaCliente1.truncatedTo(ChronoUnit.SECONDS).format(dtf).toString());
-        assertEquals(clienteControlador.getCliente(cliente2.getNumIdentificacion()).toString(), "Cliente: Número de Identificacion: 07031947L | Nombre: Antonio | Primer Apellido: García | Segundo Apellido: Null | Fecha de Alta: "+this.fechaAltaCliente2.truncatedTo(ChronoUnit.SECONDS).format(dtf).toString());
-        assertEquals(clienteControlador.getCliente(cliente3.getNumIdentificacion()).toString(), "Cliente: Número de Identificacion: 91906775V | Nombre: Paco | Primer Apellido: Rodríguez | Segundo Apellido: Null | Fecha de Alta: Null");
+        assertEquals(clienteControlador.findCliente(cliente1.getNumIdentificacion()).toString(), "Cliente: Número de Identificacion: 39029018L | Nombre: Mario | Primer Apellido: Fernández | Segundo Apellido: Alexis | Fecha de Alta: "+this.fechaAltaCliente1.truncatedTo(ChronoUnit.SECONDS).format(dtf).toString());
+        assertEquals(clienteControlador.findCliente(cliente2.getNumIdentificacion()).toString(), "Cliente: Número de Identificacion: 07031947L | Nombre: Antonio | Primer Apellido: García | Segundo Apellido: Null | Fecha de Alta: "+this.fechaAltaCliente2.truncatedTo(ChronoUnit.SECONDS).format(dtf).toString());
+        assertEquals(clienteControlador.findCliente(cliente3.getNumIdentificacion()).toString(), "Cliente: Número de Identificacion: 91906775V | Nombre: Paco | Primer Apellido: Rodríguez | Segundo Apellido: Null | Fecha de Alta: Null");
 
         ConexionBaseDatos.getInstance().cerrarConexion();
     }
@@ -86,14 +86,14 @@ class TestBaseDeDatos {
     @Test
     @DisplayName("Test para recoger una lista ordenada")
     void testRecogerListaOrdenadaClientes() {
-        cliDao = new ClienteDao();
+        cliDao = new ClienteDAO();
         cliDao.insertarElemento(cliente1);
         cliDao.insertarElemento(cliente3);
         cliDao.insertarElemento(cliente5);
         cliDao.insertarElemento(cliente2);
         cliDao.insertarElemento(cliente4);
 
-        List<Cliente> lista = cliDao.recogerListaElementosOrdenadosDNI();
+        List<Cliente> lista = cliDao.getListaElementosOrdenadosNumeroIdentificacion();
         //Tenemos 5 elementos en la base de datos:
         assertEquals(lista.size(),5);
 
@@ -118,7 +118,7 @@ class TestBaseDeDatos {
         clienteControlador.eliminarCliente(cliente2.getNumIdentificacion());
         //cliDao.eliminarElemento(cliente2.getDniCliente());
 
-        List<Cliente> lista = clienteControlador.recogerListaElementos();
+        List<Cliente> lista = clienteControlador.getListaElementos();
         //Tenemos 2 elementos en la base de datos tras eliminar uno de ellos
         assertEquals(lista.size(),2);
 
@@ -127,7 +127,7 @@ class TestBaseDeDatos {
 
         clienteControlador.eliminarCliente(cliente3.getNumIdentificacion());
 
-        List<Cliente> lista2 = clienteControlador.recogerListaElementos();
+        List<Cliente> lista2 = clienteControlador.getListaElementos();
         //Tenemos 2 elementos en la base de datos tras eliminar uno de ellos
         assertEquals(lista2.size(),1);
 

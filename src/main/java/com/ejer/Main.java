@@ -5,21 +5,14 @@ import org.hibernate.exception.SQLGrammarException;
 
 public class Main {
 
-    static {
-        System.setProperty("Log4jContextSelector",
-                "org.apache.logging.log4j.core.async.AsyncLoggerContextSelector");
-    }
-
     public static void main( String[] args ) {
         try {
-
             ConexionBaseDatos.getInstance().crearConexion();
+            //Consola consola = new Consola();
+            ConexionBaseDatos.getInstance().cerrarConexion();
         } catch(SQLGrammarException e) {
-
+            //Error en la base de datos
         }
-        //No se ha podido abrir conexion
 
-        //Consola consola = new Consola();
-        ConexionBaseDatos.getInstance().cerrarConexion();
     }
 }

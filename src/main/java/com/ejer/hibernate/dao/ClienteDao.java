@@ -14,26 +14,28 @@ import java.util.NoSuchElementException;
 
 /**
  * Clase que implementa las operaciones de la tabla 'clientes' de la base de datos
+ * @author Luis Cueto
  */
-public class ClienteDao implements IOperacionesDao<Cliente>{
+public class ClienteDAO implements IClienteDAO<Cliente> {
 
     /**
      * Logger para la clase ClienteDao
      */
-    static private final Logger LOGGER = LoggerFactory.getLogger(ClienteDao.class.getName());
+    static private final Logger LOGGER = LoggerFactory.getLogger(ClienteDAO.class);
 
     /**
      * Devuelve una lista con todos los elementos de la entidad Cliente en la base de datos
+     *
      * @return List con elementos de tipo Cliente
      */
-    public List recogerListaElementos() {
-        if(LOGGER.isDebugEnabled()) {
+    public List getListaElementos() {
+        if (LOGGER.isDebugEnabled()) {
             LOGGER.debug("Clase ClienteDao Método recogerListaElementos(): se va a recoger la lista de elementos");
         }
         EntityManager entityManager = ConexionBaseDatos.getInstance().getEntityManager();
         String query = "SELECT c FROM Cliente c";
         TypedQuery<Cliente> typedQuery = entityManager.createQuery(query, Cliente.class);
-        if(LOGGER.isInfoEnabled()) {
+        if (LOGGER.isInfoEnabled()) {
             LOGGER.info("Recogida lista de elementos Cliente");
         }
         try {
@@ -42,8 +44,7 @@ public class ClienteDao implements IOperacionesDao<Cliente>{
         } catch (Exception e) {
 
             throw e;
-        }
-        finally {
+        } finally {
             entityManager.close();
         }
     }
@@ -51,9 +52,10 @@ public class ClienteDao implements IOperacionesDao<Cliente>{
     /**
      * Devuelve una lista con todos los elementos de la entidad Cliente en la base de datos
      * Esta lista estará ordenadora por el número de identificación de cada cliente
+     *
      * @return List con elementos de tipo Cliente ordenada
      */
-    public List recogerListaElementosOrdenadosDNI() {
+    public List getListaElementosOrdenadosNumeroIdentificacion() {
         EntityManager entityManager = ConexionBaseDatos.getInstance().getEntityManager();
         String query = "SELECT c FROM Cliente c ORDER BY c.numIdentificacion ASC";
         TypedQuery<Cliente> typedQuery = entityManager.createQuery(query, Cliente.class);
@@ -63,8 +65,7 @@ public class ClienteDao implements IOperacionesDao<Cliente>{
         } catch (Exception e) {
 
             throw e;
-        }
-        finally {
+        } finally {
             entityManager.close();
         }
     }
@@ -74,8 +75,9 @@ public class ClienteDao implements IOperacionesDao<Cliente>{
      * @param cliente
      * @throws IllegalArgumentException
      */
+
     public void insertarElemento(final Cliente cliente) throws IllegalArgumentException {
-        if(cliente == null) {
+        if (cliente == null) {
             throw new IllegalArgumentException();
         }
         EntityManager entityManager = ConexionBaseDatos.getInstance().getEntityManager();
@@ -89,22 +91,22 @@ public class ClienteDao implements IOperacionesDao<Cliente>{
             transaction.commit();
 
         } catch (Exception e) {
-            if(transaction != null) {
+            if (transaction != null) {
                 transaction.rollback();
             }
             throw e;
-        }
-        finally {
+        } finally {
             entityManager.close();
         }
     }
 
     /**
      * Elimina un elemento de tipo Cliente en la base de datos
+     *
      * @param cliente
      */
     public void eliminarElemento(final Cliente cliente) throws IllegalArgumentException {
-        if(cliente == null) {
+        if (cliente == null) {
             throw new IllegalArgumentException();
         }
         EntityManager entityManager = ConexionBaseDatos.getInstance().getEntityManager();
@@ -118,30 +120,28 @@ public class ClienteDao implements IOperacionesDao<Cliente>{
             transaction.commit();
 
         } catch (Exception e) {
-            if(transaction != null) {
+            if (transaction != null) {
                 transaction.rollback();
             }
             throw e;
-        }
-        finally {
+        } finally {
             entityManager.close();
         }
 
     }
 
     public void actualizarElemento(final Cliente cliente) {
-
+        //Todo terminar método
     }
 
     /**
-     *
      * @param numIdentificacion
      * @return
      * @throws IllegalArgumentException
      * @throws NoSuchElementException
      */
-    public Cliente getCliente(final String numIdentificacion) throws IllegalArgumentException, NoSuchElementException {
-        if(numIdentificacion == null) {
+    public Cliente findCliente(final String numIdentificacion) throws IllegalArgumentException, NoSuchElementException {
+        if (numIdentificacion == null) {
             throw new IllegalArgumentException();
         }
         EntityManager entityManager = ConexionBaseDatos.getInstance().getEntityManager();
@@ -157,35 +157,10 @@ public class ClienteDao implements IOperacionesDao<Cliente>{
 
         } catch (NoResultException e) {
             //lanzarla arriba la excepcion?
-        }
-        finally {
+        } finally {
             entityManager.close();
         }
 
         return cliente;
     }
-
-
-//    public boolean comprobarExisteClienteBaseDeDatos(String numIdentificacion) throws IllegalArgumentException {
-//        if(numIdentificacion == null) {
-//            throw new IllegalArgumentException();
-//        }
-//        EntityManager entityManager = ConexionBaseDatos.getInstance().getEntityManager();
-//        String query = "SELECT c FROM Cliente c WHERE c.numIdentificacion = :numIdentificacion";
-//        TypedQuery<Cliente> typedQuery = entityManager.createQuery(query, Cliente.class);
-//        typedQuery.setParameter("numIdentificacion", numIdentificacion);
-//        List<Cliente> clientes;
-//        try {
-//            Cliente cliente = typedQuery.getSingleResult();
-//            return true;
-//
-//        } catch (NoResultException e) {
-//            //No existe ese cliente
-//            return false;
-//        }
-//        finally {
-//            entityManager.close();
-//        }
-//
-//    }
 }

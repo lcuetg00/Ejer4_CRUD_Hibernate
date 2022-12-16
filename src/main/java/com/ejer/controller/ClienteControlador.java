@@ -5,12 +5,12 @@ import com.ejer.service.ClienteService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.security.InvalidParameterException;
 import java.util.List;
 
 /**
  * Clase ClienteControlador
  * Implementa métodos para comunicarse con ClienteService
+ * @author Luis Cueto
  */
 public class ClienteControlador {
 
@@ -29,24 +29,24 @@ public class ClienteControlador {
     /**
      * Logger para la clase ClienteControlador
      */
-    static private final Logger LOGGER = LoggerFactory.getLogger(ClienteControlador.class.getName());
+    static private final Logger LOGGER = LoggerFactory.getLogger(ClienteControlador.class);
 
     /**
      * Llama a ClienteService para recoger una lista con todos las entidades de tipo Cliente en la base de datos
-     * {@link ClienteService#recogerListaElementos()}
+     * {@link ClienteService#getListaElementos()}
      * @return
      */
-    public List recogerListaElementos() {
-        return clienteService.recogerListaElementos();
+    public List getListaElementos() {
+        return clienteService.getListaElementos();
     }
 
     /**
      * Llama a ClienteService para insertar un objeto de tipo Cliente
-     * {@link ClienteService#insertarCliente(Cliente)}
+     * {@link ClienteService#insertarElemento(Cliente)}
      * @param cliente
      */
     public void insertarCliente(final Cliente cliente) {
-        clienteService.insertarCliente(cliente);
+        clienteService.insertarElemento(cliente);
     }
 
     /**
@@ -60,10 +60,10 @@ public class ClienteControlador {
 
     /**
      * Llama a ClienteService para recoger un Cliente que tenga el mismo número de identificación
-     * {@link ClienteService#getCliente(String)}
+     * {@link ClienteService#findCliente(String)}
      * @param numeroIdentificacion
      */
-    public Cliente getCliente(final String numeroIdentificacion) {
-        return clienteService.getCliente(numeroIdentificacion);
+    public Cliente findCliente(final String numeroIdentificacion) {
+        return clienteService.findCliente(numeroIdentificacion);
     }
 }
