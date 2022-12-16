@@ -127,7 +127,6 @@ public class ClienteService implements IService<Cliente> {
             LOGGER.info("El número de identificación es un NIF, comprobando que sea correcto");
         }
 
-
         //TODO terminar validacion nif
 
         return true;
@@ -177,7 +176,7 @@ public class ClienteService implements IService<Cliente> {
     public void insertarElemento(final Cliente cliente) {
         if(this.validarNumeroDocumentacion(cliente.getNumIdentificacion())) {
             clienteDao.insertarElemento(cliente);
-            //FIXME recoger excepcion si hay un cliente con el mismo nombre?, si no lanza SQLIntegrityConstraintViolationException
+            //lanza SQLIntegrityConstraintViolationException
 
         } else {
             LOGGER.error("El Número de Identificación de incorrecto");

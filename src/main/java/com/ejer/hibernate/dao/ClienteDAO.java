@@ -5,10 +5,8 @@ import com.ejer.hibernate.entity.Cliente;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-import javax.persistence.NoResultException;
-import javax.persistence.TypedQuery;
+import javax.persistence.*;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -78,6 +76,7 @@ public class ClienteDAO implements IClienteDAO<Cliente> {
     /**
      * Inserta un elemento de tipo Cliente en la base de datos
      * @param cliente
+     * @throws PersistenceException si ya existe el elemento en la base de datos
      * @throws IllegalArgumentException
      */
     public void insertarElemento(final Cliente cliente) throws IllegalArgumentException {
@@ -91,10 +90,14 @@ public class ClienteDAO implements IClienteDAO<Cliente> {
             transaction.begin();
             entityManager.persist(cliente);
             transaction.commit();
+            if (LOGGER.isDebugEnabled()) {
+                LOGGER.debug("Insertado elemento: " + cliente.toString());
+            }
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
             }
+            LOGGER.error("Error al insertar el elemento. Se ha hecho rollback a la transacción");
             throw e;
         } finally {
             entityManager.close();
@@ -119,11 +122,15 @@ public class ClienteDAO implements IClienteDAO<Cliente> {
             entityManager.remove(entityManager.merge(cliente));
 
             transaction.commit();
+            if (LOGGER.isDebugEnabled()) {
+                LOGGER.debug("Eliminado elemento: " + cliente.toString());
+            }
 
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
             }
+            LOGGER.error("Error al eliminar el elemento. Se ha hecho rollback a la transacción");
             throw e;
         } finally {
             entityManager.close();
@@ -132,7 +139,6 @@ public class ClienteDAO implements IClienteDAO<Cliente> {
     }
 
     public void updateElemento(final Cliente cliente) {
-        //Todo terminar método
         if (cliente == null) {
             throw new IllegalArgumentException();
         }
@@ -152,10 +158,15 @@ public class ClienteDAO implements IClienteDAO<Cliente> {
             entityManager.merge(clienteBaseDatos);
             transaction.commit();
 
+            if (LOGGER.isDebugEnabled()) {
+                LOGGER.debug("Actualizado elemento: ");
+            }
+
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
             }
+            LOGGER.error("Error al actualizar el elemento. Se ha hecho rollback a la transacción");
             throw e;
         } finally {
             entityManager.close();
@@ -164,8 +175,9 @@ public class ClienteDAO implements IClienteDAO<Cliente> {
     }
 
     /**
+     * Busca y devuelve un cliente de la base de datos que tenga el mismo número de identificación
      * @param numIdentificacion
-     * @return
+     * @return cliente con el número de identificacion argumentado
      * @throws IllegalArgumentException
      * @throws NoSuchElementException
      */
@@ -185,7 +197,8 @@ public class ClienteDAO implements IClienteDAO<Cliente> {
 
 
         } catch (NoResultException e) {
-            //lanzarla arriba la excepcion?
+            LOGGER.error("No se ha encontrado el cliente en la base de datos");
+            throw e;
         } finally {
             entityManager.close();
         }

@@ -1,6 +1,7 @@
 package com.ejer.tests;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.ejer.controller.ClienteControlador;
 import com.ejer.hibernate.conexion.ConexionBaseDatos;
@@ -10,6 +11,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import javax.persistence.PersistenceException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
@@ -65,6 +68,20 @@ class TestBaseDeDatos {
         assertEquals(lista.get(2).toString(), "Cliente: Número de Identificacion: 91906775V | Nombre: Paco | Primer Apellido: Rodríguez | Segundo Apellido: Null | Fecha de Alta: Null");
 
         ConexionBaseDatos.getInstance().cerrarConexion();
+    }
+
+    @Test
+    @DisplayName("Test para insertar un cliente que ya existe")
+    void testInsertarClienteException() {
+        clienteControlador = new ClienteControlador();
+        boolean success = false;
+        clienteControlador.insertarCliente(cliente1);
+        try {
+            clienteControlador.insertarCliente(cliente1);
+        } catch(PersistenceException e) {
+            success = true;
+        }
+        assertTrue(success);
     }
 
     @Test
@@ -140,7 +157,6 @@ class TestBaseDeDatos {
         clienteControlador = new ClienteControlador();
 
         clienteControlador.insertarCliente(cliente1);
-        clienteControlador.insertarCliente(cliente2);
 
         Cliente clienteActualizar = new Cliente();
         clienteActualizar.setNumIdentificacion(cliente1.getNumIdentificacion());
@@ -154,6 +170,8 @@ class TestBaseDeDatos {
 
         assertEquals(clienteActualizado.toString(), "Cliente: Número de Identificacion: 39029018L | Nombre: Francisco | Primer Apellido: Fernández | Segundo Apellido: Alexis | Fecha de Alta: "+this.fechaAltaCliente1.truncatedTo(ChronoUnit.SECONDS).format(dtf).toString());
 
+        //Tenemos 1 elemento en la base de datos, el que se ha actualizado:
+        assertEquals(clienteControlador.getListaElementos().size(),1);
     }
 
 }
