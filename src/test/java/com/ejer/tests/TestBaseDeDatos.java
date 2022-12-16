@@ -107,7 +107,7 @@ class TestBaseDeDatos {
     }
 
     @Test
-    @DisplayName("Test para probar a eliminar un cliente por su DNI")
+    @DisplayName("Test para eliminar un cliente por su DNI")
     void testEliminarClienteConDni() {
         clienteControlador = new ClienteControlador();
 
@@ -134,5 +134,26 @@ class TestBaseDeDatos {
 //        assertEquals(lista.get(0).toString(), "Cliente: DNI: 12312312A | Nombre: Mario | Primer Apellido: Fernández | Segundo Apellido: Alexis | Fecha de Alta: "+this.fechaAltaCliente1.truncatedTo(ChronoUnit.SECONDS).format(dtf).toString());
     }
 
+    @Test
+    @DisplayName("Test para actualizar un cliente")
+    void testActualizarCliente() {
+        clienteControlador = new ClienteControlador();
+
+        clienteControlador.insertarCliente(cliente1);
+        clienteControlador.insertarCliente(cliente2);
+
+        Cliente clienteActualizar = new Cliente();
+        clienteActualizar.setNumIdentificacion(cliente1.getNumIdentificacion());
+        clienteActualizar.setNombreCliente("Francisco");
+        clienteActualizar.setPrimerApellidoCliente(cliente1.getPrimerApellidoCliente());
+        clienteActualizar.setSegundoApellidoCliente(cliente1.getSegundoApellidoCliente());
+        clienteActualizar.setFechaAltaCliente(cliente1.getFechaAltaCliente());
+
+        clienteControlador.updateCliente(clienteActualizar);
+        Cliente clienteActualizado = clienteControlador.findCliente(cliente1.getNumIdentificacion());
+
+        assertEquals(clienteActualizado.toString(), "Cliente: Número de Identificacion: 39029018L | Nombre: Francisco | Primer Apellido: Fernández | Segundo Apellido: Alexis | Fecha de Alta: "+this.fechaAltaCliente1.truncatedTo(ChronoUnit.SECONDS).format(dtf).toString());
+
+    }
 
 }

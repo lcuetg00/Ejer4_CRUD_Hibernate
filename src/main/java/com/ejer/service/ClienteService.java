@@ -186,7 +186,17 @@ public class ClienteService implements IService<Cliente> {
     }
 
     public Cliente findCliente(final String numIdentificacion) {
+        if(numIdentificacion == null) {
+            throw new InvalidParameterException();
+        }
         return clienteDao.findCliente(numIdentificacion);
+    }
+
+    public void updateCliente(final Cliente cliente) {
+        if(cliente == null) {
+            throw new InvalidParameterException();
+        }
+        clienteDao.updateElemento(cliente);
     }
 
 }

@@ -5,6 +5,7 @@ import com.ejer.service.ClienteService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.security.InvalidParameterException;
 import java.util.List;
 
 /**
@@ -46,6 +47,9 @@ public class ClienteControlador {
      * @param cliente
      */
     public void insertarCliente(final Cliente cliente) {
+        if(cliente == null) {
+            throw new InvalidParameterException();
+        }
         clienteService.insertarElemento(cliente);
     }
 
@@ -55,6 +59,9 @@ public class ClienteControlador {
      * @param numeroIdentificacion
      */
     public void eliminarCliente(final String numeroIdentificacion) {
+        if(numeroIdentificacion == null) {
+            throw new InvalidParameterException();
+        }
         clienteService.eliminarCliente(numeroIdentificacion);
     }
 
@@ -64,6 +71,16 @@ public class ClienteControlador {
      * @param numeroIdentificacion
      */
     public Cliente findCliente(final String numeroIdentificacion) {
+        if(numeroIdentificacion == null) {
+            throw new InvalidParameterException();
+        }
         return clienteService.findCliente(numeroIdentificacion);
+    }
+
+    public void updateCliente(final Cliente cliente) {
+        if(cliente == null) {
+            throw new InvalidParameterException();
+        }
+        clienteService.updateCliente(cliente);
     }
 }

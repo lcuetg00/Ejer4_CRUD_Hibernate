@@ -8,8 +8,8 @@
 
         <class>com.ejer.hibernate.entity.Cliente</class>
         <properties>
-            <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver" />
-            <property name="hibernate.connection.url" value="jdbc:mysql://localhost/agendatest?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC" />
+            <property name="hibernate.connection.driver_class" value="com.p6spy.engine.spy.P6SpyDriver" />
+            <property name="hibernate.connection.url" value="jdbc:p6spy:mysql://localhost/agenda?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC" />
             <property name="hibernate.connection.username" value="root" />
             <property name="hibernate.connection.password" value="root" />
 
