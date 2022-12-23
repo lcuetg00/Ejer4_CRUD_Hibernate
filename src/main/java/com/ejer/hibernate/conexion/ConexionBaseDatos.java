@@ -48,7 +48,7 @@ public class ConexionBaseDatos {
             LOGGER.error("Clase ConexionBaseDatos Método crearConexion(): unidadPersistencia es null");
             throw new NullPointerException("Clase ConexionBaseDatos: unidadPersistencia es null");
         }
-        LOGGER.error("Clase ConexionBaseDatos Método crearConexion(): unidadPersistencia tiene el valor de {}",this.unidadPersistencia);
+        //LOGGER.error("Clase ConexionBaseDatos Método crearConexion(): unidadPersistencia tiene el valor de {}",this.unidadPersistencia);
         this.entityManagerFactory = Persistence.createEntityManagerFactory(unidadPersistencia);
         if(LOGGER.isDebugEnabled()) {
             LOGGER.debug("Clase ConexionBaseDatos Método crearConexion(): Creado EntityManagerFactory");
@@ -87,7 +87,9 @@ public class ConexionBaseDatos {
      * Cierra el el EntityManagerFactory de esta clase para cerrar la conexión con la base de datos
      */
     public void cerrarConexion() {
-        this.entityManagerFactory.close();
+        if(this.entityManagerFactory.isOpen()) {
+            this.entityManagerFactory.close();
+        }
         if(LOGGER.isDebugEnabled()) {
             LOGGER.debug("Clase ConexionBaseDatos Método cerrarConexion(): se ha cerrado la conexión ");
         }

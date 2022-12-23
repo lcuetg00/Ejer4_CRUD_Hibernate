@@ -14,7 +14,7 @@ import java.util.NoSuchElementException;
  * Clase que implementa las operaciones de la tabla 'clientes' de la base de datos
  * @author Luis Cueto
  */
-public class ClienteDAO implements IClienteDAO<Cliente> {
+public class ClienteDAO implements IClienteDAO<Cliente, Integer> {
 
     /**
      * Logger para la clase ClienteDao
@@ -104,13 +104,44 @@ public class ClienteDAO implements IClienteDAO<Cliente> {
         }
     }
 
-    /**
-     * Elimina un elemento de tipo Cliente en la base de datos
-     *
-     * @param cliente
-     */
-    public void eliminarElemento(final Cliente cliente) throws IllegalArgumentException {
-        if (cliente == null) {
+//
+//    /**
+//     * Elimina un elemento de tipo Cliente en la base de datos
+//     * EL parámetro cliente debe de tener el uuid para poder eliminarlo
+//     * @param cliente
+//     */
+//    public void eliminarElemento(final Cliente cliente) throws IllegalArgumentException {
+//        if (cliente == null) {
+//            throw new IllegalArgumentException();
+//        }
+//        EntityManager entityManager = ConexionBaseDatos.getInstance().getEntityManager();
+//        EntityTransaction transaction = null;
+//        try {
+//            transaction = entityManager.getTransaction();
+//            transaction.begin();
+//            //entityManager.contains(cliente) ? cliente : entityManager.merge(cliente)
+//            entityManager.remove(entityManager.merge(cliente));
+//
+//            transaction.commit();
+//            if (LOGGER.isDebugEnabled()) {
+//                LOGGER.debug("Eliminado elemento: " + cliente.toString());
+//            }
+//
+//        } catch (Exception e) {
+//            if (transaction != null) {
+//                transaction.rollback();
+//            }
+//            LOGGER.error("Error al eliminar el elemento. Se ha hecho rollback a la transacción");
+//            throw e;
+//        } finally {
+//            entityManager.close();
+//        }
+//
+//    }
+
+
+    public Cliente find(Integer integer) {
+        if (integer == null) {
             throw new IllegalArgumentException();
         }
         EntityManager entityManager = ConexionBaseDatos.getInstance().getEntityManager();
@@ -118,10 +149,43 @@ public class ClienteDAO implements IClienteDAO<Cliente> {
         try {
             transaction = entityManager.getTransaction();
             transaction.begin();
-            //entityManager.contains(cliente) ? cliente : entityManager.merge(cliente)
-            entityManager.remove(entityManager.merge(cliente));
+            Cliente cliente = entityManager.find(Cliente.class,integer);
+            if(cliente == null) {
+                throw new NoSuchElementException("No existe ele lemento en la base de datos");
+            }
 
+            if (LOGGER.isDebugEnabled()) {
+                LOGGER.debug("Eliminado elemento: " + cliente.toString());
+            }
+            return cliente;
+
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            LOGGER.error("Error al encontrar el elemento con valor {}. Se ha hecho rollback a la transacción",integer);
+            throw e;
+        } finally {
+            entityManager.close();
+        }
+    }
+
+    public void delete(Integer integer) {
+        if (integer == null) {
+            throw new IllegalArgumentException();
+        }
+        EntityManager entityManager = ConexionBaseDatos.getInstance().getEntityManager();
+        EntityTransaction transaction = null;
+        try {
+            transaction = entityManager.getTransaction();
+            transaction.begin();
+            Cliente cliente = this.find(integer);
+            if(cliente == null) {
+                throw new NoSuchElementException("No existe ele lemento en la base de datos");
+            }
+            entityManager.remove(entityManager.merge(cliente));
             transaction.commit();
+
             if (LOGGER.isDebugEnabled()) {
                 LOGGER.debug("Eliminado elemento: " + cliente.toString());
             }
@@ -135,7 +199,10 @@ public class ClienteDAO implements IClienteDAO<Cliente> {
         } finally {
             entityManager.close();
         }
+    }
 
+    public int count() {
+        return 0;
     }
 
     public void updateElemento(final Cliente cliente) {
@@ -154,6 +221,8 @@ public class ClienteDAO implements IClienteDAO<Cliente> {
             clienteBaseDatos.setPrimerApellidoCliente(cliente.getPrimerApellidoCliente());
             clienteBaseDatos.setSegundoApellidoCliente(cliente.getSegundoApellidoCliente());
             clienteBaseDatos.setNumIdentificacion(cliente.getNumIdentificacion());
+            clienteBaseDatos.setFechaAltaCliente(cliente.getFechaAltaCliente());
+
 
             entityManager.merge(clienteBaseDatos);
             transaction.commit();
@@ -194,6 +263,7 @@ public class ClienteDAO implements IClienteDAO<Cliente> {
             cliente = typedQuery.getSingleResult();
             //Solo puede haber un cliente con ese DNI concreto ya que en la base de datos
             //el campo DNI es unique
+
 
 
         } catch (NoResultException e) {

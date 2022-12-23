@@ -55,7 +55,7 @@ public class ClienteControlador {
 
     /**
      * Llama a ClienteService para eliminar Cliente por su número de identificación
-     * {@link ClienteService#eliminarCliente(String)} 
+     * {@link ClienteService#eliminarCliente(String)}
      * @param numeroIdentificacion
      */
     public void eliminarCliente(final String numeroIdentificacion) {

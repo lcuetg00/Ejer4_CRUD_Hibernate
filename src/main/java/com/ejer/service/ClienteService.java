@@ -1,5 +1,6 @@
 package com.ejer.service;
 
+import com.ejer.exceptions.IllegalNumeroIdentificacion;
 import com.ejer.hibernate.dao.ClienteDAO;
 import com.ejer.hibernate.entity.Cliente;
 import org.apache.logging.log4j.LogManager;
@@ -7,6 +8,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.security.InvalidParameterException;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 /**
  * Clase ClienteService
@@ -159,18 +161,21 @@ public class ClienteService implements IService<Cliente> {
     public List getListaElementos() {
         return clienteDao.getListaElementos();
     }
-    
-    public void eliminarCliente(final String numIdentificacion) {
-        //FIXME validar numero de identificacion
-        //if(this.validarNumeroDocumentacion(cliente.getNumIdentificacion())) {
-        Cliente clienteEliminar = clienteDao.findCliente(numIdentificacion);
-        //validar que no hay un cliente con el mismo dni
-//        } else {
-//                LOGGER.error("El Número de Identificación de incorrecto");
 
-//        }
+    /**
+     *
+     * @param numIdentificacion
+     * @throws NoSuchElementException Si no encuentra al elemento en la base de datos
+     */
+    public void eliminarCliente(final String numIdentificacion) throws NoSuchElementException {
+        if(this.validarNumeroDocumentacion(numIdentificacion)) {
+            Cliente clienteEliminar = clienteDao.findCliente(numIdentificacion);
+            clienteDao.delete(clienteEliminar.getIdCliente());
+        } else {
+            LOGGER.error("El Número de Identificación de incorrecto");
+            throw new InvalidParameterException("El número de identificación no es válido");
+        }
 
-        clienteDao.eliminarElemento(clienteEliminar);
     }
 
     public void insertarElemento(final Cliente cliente) {
@@ -188,14 +193,25 @@ public class ClienteService implements IService<Cliente> {
         if(numIdentificacion == null) {
             throw new InvalidParameterException();
         }
-        return clienteDao.findCliente(numIdentificacion);
+        if(this.validarNumeroDocumentacion(numIdentificacion)) {
+            return clienteDao.findCliente(numIdentificacion);
+        } else {
+            LOGGER.error("El Número de Identificación de incorrecto");
+            throw new InvalidParameterException("El número de identificación no es válido");
+        }
     }
 
     public void updateCliente(final Cliente cliente) {
         if(cliente == null) {
             throw new InvalidParameterException();
         }
-        clienteDao.updateElemento(cliente);
+        if(this.validarNumeroDocumentacion(cliente.getNumIdentificacion())) {
+            clienteDao.updateElemento(cliente);
+        } else {
+            LOGGER.error("El Número de Identificación de incorrecto");
+            throw new InvalidParameterException("El número de identificación no es válido");
+        }
+
     }
 
 }

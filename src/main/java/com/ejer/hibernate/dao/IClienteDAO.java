@@ -8,7 +8,7 @@ import java.util.List;
  * Interfaz para
  * @author Luis Cueto
  */
-public interface IClienteDAO<T> extends IDAO<T> {
+public interface IClienteDAO<T, UUID> extends IDAO<T, UUID> {
     /**
      * Devuelve una lista de elementos ordenador por el número de indentificación del cliente
      * @return
