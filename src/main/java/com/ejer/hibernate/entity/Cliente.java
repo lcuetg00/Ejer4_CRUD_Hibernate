@@ -1,5 +1,7 @@
 package com.ejer.hibernate.entity;
 
+import com.ejer.vista.Consola;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -124,7 +126,10 @@ public class Cliente implements Serializable{
     }
 
     public void setCuotaMaximaPago(BigDecimal cuotaMaximaPago) {
-        this.cuotaMaximaPago = cuotaMaximaPago;
+        if(cuotaMaximaPago != null) {
+            this.cuotaMaximaPago = cuotaMaximaPago;
+            this.setEnumCliente(EnumClienteTipo.REGISTRADO);
+        }
     }
 
     public EnumClienteTipo getEnumCliente() {
@@ -133,6 +138,18 @@ public class Cliente implements Serializable{
 
     public void setEnumCliente(EnumClienteTipo enumCliente) {
         this.enumCliente = enumCliente;
+    }
+
+    public String getMetadatos() {
+        StringBuilder caracteristicas = new StringBuilder();
+        caracteristicas.append("Nombre Completo: " + this.nombreCliente + " " + this.primerApellidoCliente + " " +((this.segundoApellidoCliente) != null ? this.segundoApellidoCliente : "") + Consola.RETORNO_CARRO);
+        caracteristicas.append("Número de Identificacion: " + this.numIdentificacion + Consola.RETORNO_CARRO);
+        caracteristicas.append("Fecha de Alta: " + ((this.fechaAltaCliente) != null ? this.fechaAltaCliente : "No tiene"));
+        if(this.enumCliente.equals(EnumClienteTipo.REGISTRADO)) {
+            caracteristicas.append(Consola.RETORNO_CARRO);
+            caracteristicas.append("Registrado con cuota Máxima: " + this.cuotaMaximaPago);
+        }
+        return caracteristicas.toString();
     }
 
     public String toString() {

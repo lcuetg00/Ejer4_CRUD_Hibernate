@@ -1,11 +1,11 @@
 package com.ejer.service;
 
-import com.ejer.exceptions.IllegalNumeroIdentificacion;
 import com.ejer.hibernate.dao.ClienteDAO;
 import com.ejer.hibernate.entity.Cliente;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.persistence.PersistenceException;
 import java.security.InvalidParameterException;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -32,7 +32,7 @@ public class ClienteService implements IService<Cliente> {
     /**
      * Patrón que siguen los NIE: números más una letra final
      */
-    private static final String REGEX_NIE = "[0-9]++[A-Z]";
+    private static final String REGEX_NIE = "[0-9]++[A-Za-z]";
 
     /**
      * Patrón que siguen los NIF: Letra X o T seguido de número y una letra final
@@ -153,6 +153,14 @@ public class ClienteService implements IService<Cliente> {
         return true;
     }
 
+    public String formatearNumeroIdentificacion(final String nie) {
+        String nieDevolver = nie.toUpperCase();
+        while (nieDevolver.length() < 9) {
+            nieDevolver = "0" + nieDevolver;
+        }
+        return nieDevolver;
+    }
+
     /**
      * Llama a ClienteDao para recoger una lista de todos los elementos Cliente de la base de datos
      * {@link ClienteDAO#getListaElementos()}
@@ -163,13 +171,23 @@ public class ClienteService implements IService<Cliente> {
     }
 
     /**
+     * Llama a ClienteDao para recoger una lista de todos los elementos Cliente de la base de datos
+     * {@link ClienteDAO#getListaElementosOrdenadosNumeroIdentificacion()}
+     * @return
+     */
+    public List getListaElementosOrdenadorNumeroIdentificacion() {
+        return clienteDao.getListaElementosOrdenadosNumeroIdentificacion();
+    }
+
+    /**
      *
      * @param numIdentificacion
      * @throws NoSuchElementException Si no encuentra al elemento en la base de datos
      */
     public void eliminarCliente(final String numIdentificacion) throws NoSuchElementException {
         if(this.validarNumeroDocumentacion(numIdentificacion)) {
-            Cliente clienteEliminar = clienteDao.findCliente(numIdentificacion);
+            String numIdentificacionFormateado = formatearNumeroIdentificacion(numIdentificacion);
+            Cliente clienteEliminar = clienteDao.findCliente(numIdentificacionFormateado);
             clienteDao.delete(clienteEliminar.getIdCliente());
         } else {
             LOGGER.error("El Número de Identificación de incorrecto");
@@ -178,13 +196,19 @@ public class ClienteService implements IService<Cliente> {
 
     }
 
-    public void insertarElemento(final Cliente cliente) {
+
+    public void insertarElemento(final Cliente cliente) throws PersistenceException, InvalidParameterException{
+        if(cliente == null) {
+            throw new InvalidParameterException("Cliente argumentado es null");
+        }
         if(this.validarNumeroDocumentacion(cliente.getNumIdentificacion())) {
+            cliente.setNumIdentificacion(this.formatearNumeroIdentificacion(cliente.getNumIdentificacion()));
             clienteDao.insertarElemento(cliente);
             //lanza SQLIntegrityConstraintViolationException
 
         } else {
             LOGGER.error("El Número de Identificación de incorrecto");
+            throw new InvalidParameterException();
         }
 
     }
@@ -194,7 +218,8 @@ public class ClienteService implements IService<Cliente> {
             throw new InvalidParameterException();
         }
         if(this.validarNumeroDocumentacion(numIdentificacion)) {
-            return clienteDao.findCliente(numIdentificacion);
+            String numIdentificacionFormateado = formatearNumeroIdentificacion(numIdentificacion);
+            return clienteDao.findCliente(numIdentificacionFormateado);
         } else {
             LOGGER.error("El Número de Identificación de incorrecto");
             throw new InvalidParameterException("El número de identificación no es válido");

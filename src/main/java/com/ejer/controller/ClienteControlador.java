@@ -42,6 +42,15 @@ public class ClienteControlador {
     }
 
     /**
+     * Llama a ClienteService para recoger una lista con todos las entidades de tipo Cliente en la base de datos
+     * {@link ClienteService#getListaElementosOrdenadorNumeroIdentificacion()}
+     * @return
+     */
+    public List getListaElementosOrdenadorNumeroIdentificacion() {
+        return clienteService.getListaElementosOrdenadorNumeroIdentificacion();
+    }
+
+    /**
      * Llama a ClienteService para insertar un objeto de tipo Cliente
      * {@link ClienteService#insertarElemento(Cliente)}
      * @param cliente
