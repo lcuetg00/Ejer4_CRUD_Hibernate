@@ -37,12 +37,12 @@ public class ClienteService implements IService<Cliente> {
     /**
      * Patrón que siguen los NIF: Letra X o T seguido de número y una letra final
      */
-    private static final String REGEX_NIF = "[XYZ][0-9]++[A-Z]";
+    private static final String REGEX_NIF = "[XYZxyz][0-9]++[A-Za-z]";
 
     /**
      * Patrón que siguen los CIF: Letra seguida de números y finalmente puede acabar en una letra o en un número
      */
-    private static final String REGEX_CIF = "[A-Z][0-9]++[A-Z_0-9]";
+    private static final String REGEX_CIF = "[A-Za-z][0-9]++[A-Za-z_0-9]";
 
     /**
      * Lista de letras que utilizan los NIE en cada posición
@@ -153,6 +153,12 @@ public class ClienteService implements IService<Cliente> {
         return true;
     }
 
+    /**
+     * Para un dni, devuelve un string de tamaño 9 caracteres con la letra en mayúscula
+     * Si el dni tiene menos de 9 caracteres, lo rellena con 0s a la izquierda
+     * @param nie
+     * @return
+     */
     public String formatearNumeroIdentificacion(final String nie) {
         String nieDevolver = nie.toUpperCase();
         while (nieDevolver.length() < 9) {
@@ -171,7 +177,7 @@ public class ClienteService implements IService<Cliente> {
     }
 
     /**
-     * Llama a ClienteDao para recoger una lista de todos los elementos Cliente de la base de datos
+     * Llama a ClienteDao para recoger una lista de todos los elementos Cliente de la base de datos ordenados por su Número de Identificación
      * {@link ClienteDAO#getListaElementosOrdenadosNumeroIdentificacion()}
      * @return
      */
@@ -180,11 +186,15 @@ public class ClienteService implements IService<Cliente> {
     }
 
     /**
-     *
+     * Llama a ClienteDao para buscar el cliente en la base de datos que tenga el Número de Identificación argumentado y a continuación eliminarlo
+     * Comprueba que el Número de Indetificación del cliente sea válido utilizando {@link ClienteService#validarNumeroDocumentacion(String)}
+     * Para encontrar al cliente llama a: {@link ClienteDAO#findCliente(String)}
+     * Para eliminar al cliente llama a: {@link ClienteDAO#delete(Integer)}
      * @param numIdentificacion
      * @throws NoSuchElementException Si no encuentra al elemento en la base de datos
+     * @throws InvalidParameterException Si el Número de Identificación del cliente no es válido
      */
-    public void eliminarCliente(final String numIdentificacion) throws NoSuchElementException {
+    public void eliminarCliente(final String numIdentificacion) throws NoSuchElementException, InvalidParameterException {
         if(this.validarNumeroDocumentacion(numIdentificacion)) {
             String numIdentificacionFormateado = formatearNumeroIdentificacion(numIdentificacion);
             Cliente clienteEliminar = clienteDao.findCliente(numIdentificacionFormateado);
@@ -196,7 +206,15 @@ public class ClienteService implements IService<Cliente> {
 
     }
 
-
+    /**
+     * Llama a ClienteDao para insertar el cliente argumentado en la base de datos
+     * {@link ClienteDAO#insertarElemento(Cliente)}
+     * Comprueba que el Número de Indetificación del cliente sea válido utilizando {@link ClienteService#validarNumeroDocumentacion(String)}
+     * @param cliente
+     * @throws PersistenceException Si ya existe un cliente en la base de datos con el mismo Número de Identificación
+     * @throws InvalidParameterException Si el número de identificación del cliente argumentado es inválido
+     *                                   Si el cliente argumentado es null
+     */
     public void insertarElemento(final Cliente cliente) throws PersistenceException, InvalidParameterException{
         if(cliente == null) {
             throw new InvalidParameterException("Cliente argumentado es null");
@@ -213,7 +231,15 @@ public class ClienteService implements IService<Cliente> {
 
     }
 
-    public Cliente findCliente(final String numIdentificacion) {
+    /**
+     * Llama a ClienteDao para insertar el cliente argumentado en la base de datos
+     * {@link ClienteDAO#findCliente(String)}}
+     * Comprueba que el Número de Indetificación del cliente sea válido utilizando {@link ClienteService#validarNumeroDocumentacion(String)}
+     * @param numIdentificacion
+     * @throws InvalidParameterException Si numIdentificacion es inválido
+     *                                   Si el cliente argumentado es null
+     */
+    public Cliente findCliente(final String numIdentificacion) throws InvalidParameterException {
         if(numIdentificacion == null) {
             throw new InvalidParameterException();
         }
@@ -226,11 +252,18 @@ public class ClienteService implements IService<Cliente> {
         }
     }
 
-    public void updateCliente(final Cliente cliente) {
+    /**
+     * Llama a ClienteDao para actualizar un cliente con los datos del cliente argumentado
+     * {@link ClienteDAO#updateElemento(Cliente)}}
+     * Comprueba que el Número de Indetificación del cliente sea válido utilizando {@link ClienteService#validarNumeroDocumentacion(String)}
+     * @param cliente
+     */
+    public void updateCliente(final Cliente cliente) throws InvalidParameterException {
         if(cliente == null) {
             throw new InvalidParameterException();
         }
         if(this.validarNumeroDocumentacion(cliente.getNumIdentificacion())) {
+            //FIXME validar que exista el cliente con ese identificador en la base de datos
             clienteDao.updateElemento(cliente);
         } else {
             LOGGER.error("El Número de Identificación de incorrecto");

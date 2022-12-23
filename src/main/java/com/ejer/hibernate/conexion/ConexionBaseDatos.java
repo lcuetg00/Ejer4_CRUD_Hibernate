@@ -13,14 +13,17 @@ import javax.persistence.Persistence;
  * @author Luis Cueto
  */
 public class ConexionBaseDatos {
+
     /**
      * Instancia de la propia clase
      */
     private static ConexionBaseDatos instanciaConexion;
+
     /**
      * Para la conexión con la base de datos. Utiliza 'unidadPersistencia' como unidad de permanencia
      */
     private EntityManagerFactory entityManagerFactory;
+
     /**
      * Contiene el nombre de la unidad de permanencia que utilizará la base de datos, almacenado en persistence.xml
      * Valor por defecto: 'persistencia'
@@ -48,10 +51,9 @@ public class ConexionBaseDatos {
             LOGGER.error("Clase ConexionBaseDatos Método crearConexion(): unidadPersistencia es null");
             throw new NullPointerException("Clase ConexionBaseDatos: unidadPersistencia es null");
         }
-        //LOGGER.error("Clase ConexionBaseDatos Método crearConexion(): unidadPersistencia tiene el valor de {}",this.unidadPersistencia);
         this.entityManagerFactory = Persistence.createEntityManagerFactory(unidadPersistencia);
         if(LOGGER.isDebugEnabled()) {
-            LOGGER.debug("Clase ConexionBaseDatos Método crearConexion(): Creado EntityManagerFactory");
+            LOGGER.debug("Clase ConexionBaseDatos Método crearConexion(): creado EntityManagerFactory con el valor de unidadePersistencia {}",this.unidadPersistencia);
         }
         if(LOGGER.isInfoEnabled()) {
             LOGGER.info("Abierta conexión con la base de datos");

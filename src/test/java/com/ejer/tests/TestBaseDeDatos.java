@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.ejer.controller.ClienteControlador;
-import com.ejer.exceptions.IllegalNumeroIdentificacion;
 import com.ejer.hibernate.conexion.ConexionBaseDatos;
 import com.ejer.hibernate.dao.ClienteDAO;
 import com.ejer.hibernate.entity.Cliente;
@@ -123,14 +122,14 @@ class TestBaseDeDatos {
     @Test
     @DisplayName("Test para recoger una lista ordenada")
     void testRecogerListaOrdenadaClientes() {
-        cliDao = new ClienteDAO();
-        cliDao.insertarElemento(cliente1);
-        cliDao.insertarElemento(cliente3);
-        cliDao.insertarElemento(cliente5);
-        cliDao.insertarElemento(cliente2);
-        cliDao.insertarElemento(cliente4);
+        clienteControlador = new ClienteControlador();
+        clienteControlador.insertarCliente(cliente1);
+        clienteControlador.insertarCliente(cliente3);
+        clienteControlador.insertarCliente(cliente5);
+        clienteControlador.insertarCliente(cliente2);
+        clienteControlador.insertarCliente(cliente4);
 
-        List<Cliente> lista = cliDao.getListaElementosOrdenadosNumeroIdentificacion();
+        List<Cliente> lista = clienteControlador.getListaElementosOrdenadorNumeroIdentificacion();
         //Tenemos 5 elementos en la base de datos:
         assertEquals(lista.size(),5);
 

@@ -140,6 +140,10 @@ public class Cliente implements Serializable{
         this.enumCliente = enumCliente;
     }
 
+    /**
+     * Devuelve un string con las características de un cliente con saltos de línea entre ellas
+     * @return
+     */
     public String getMetadatos() {
         StringBuilder caracteristicas = new StringBuilder();
         caracteristicas.append("Nombre Completo: " + this.nombreCliente + " " + this.primerApellidoCliente + " " +((this.segundoApellidoCliente) != null ? this.segundoApellidoCliente : "") + Consola.RETORNO_CARRO);

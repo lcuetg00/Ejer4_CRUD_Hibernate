@@ -53,6 +53,7 @@ public class ClienteControlador {
     /**
      * Llama a ClienteService para insertar un objeto de tipo Cliente
      * {@link ClienteService#insertarElemento(Cliente)}
+     * @throws InvalidParameterException si el cliente argumentado es null
      * @param cliente
      */
     public void insertarCliente(final Cliente cliente) {
@@ -78,6 +79,7 @@ public class ClienteControlador {
      * Llama a ClienteService para recoger un Cliente que tenga el mismo número de identificación
      * {@link ClienteService#findCliente(String)}
      * @param numeroIdentificacion
+     * @throws InvalidParameterException si numeroIdentificacion es null
      */
     public Cliente findCliente(final String numeroIdentificacion) {
         if(numeroIdentificacion == null) {
@@ -86,6 +88,12 @@ public class ClienteControlador {
         return clienteService.findCliente(numeroIdentificacion);
     }
 
+    /**
+     * Llama a ClienteService para recoger un Cliente que tenga el mismo número de identificación
+     * {@link ClienteService#findCliente(String)}
+     * @param cliente
+     * @throws InvalidParameterException si el cliente argumentado es null
+     */
     public void updateCliente(final Cliente cliente) {
         if(cliente == null) {
             throw new InvalidParameterException();
