@@ -22,27 +22,31 @@ public class Consola {
     /**
      * Representa la opción de anyadir clientes a la base de datos
      */
-    public static final int OPCIONANYADIRCLIENTE = 1;
+    private static final int OPCIONANYADIRCLIENTE = 1;
     /**
      * Representa la opción de consultar cliente a la base de datos
      */
-    public static final int OPCIONCONSULTARCLIENTE = 2;
+    private static final int OPCIONCONSULTARCLIENTE = 2;
     /**
      * Representa la opción de borrar cliente en la base de datos
      */
-    public static final int OPCIONBORRARCLIENTE = 3;
+    private static final int OPCIONBORRARCLIENTE = 3;
     /**
      * Representa la opción de editar cliente en la base de datos
      */
-    public static final int OPCIONEDITARCLIENTE = 4;
+    private static final int OPCIONEDITARCLIENTE = 4;
     /**
      * Representa la opción de listar clientes a la base de datos
      */
-    public static final int OPCIONLISTARCLIENTES = 5;
+    private static final int OPCIONLISTARCLIENTES = 5;
     /**
      * Representa la opción de salir de la aplicación en el menú
      */
-    public static final int OPCIONSALIR = 6;
+    private static final int OPCIONSALIR = 6;
+
+    //Función de imprimir listas
+    private static final int NUMERO_ELEMENTOS_PAGINA = 1;
+
 
     //Formato de texto
 
@@ -122,19 +126,33 @@ public class Consola {
                         System.out.println("Escriba el segundo apellido. Dato no requerido, pulsa enter para saltar");
                         scanner = new Scanner(System.in);
                         String apellido2 = scanner.nextLine();
-                        clienteInsertar.setSegundoApellidoCliente(apellido2.equals(Character.MIN_VALUE) ? apellido2 : null);
+                        clienteInsertar.setSegundoApellidoCliente("".equals(apellido2) ? null : apellido2);
+
                         System.out.println("Escriba el Número de Identificación");
-                        clienteInsertar.setNumIdentificacion(scanner.next());
+                        boolean validacionIdentificacion = false;
+                        String numIdentificacion;
+                        while(validacionIdentificacion == false) {
+                            numIdentificacion = scanner.next();
+                            if(clienteControlador.validarNumeroDocumentacion(numIdentificacion)) {
+                                //Es válido
+                                clienteInsertar.setNumIdentificacion(numIdentificacion);
+                                validacionIdentificacion = true;
+                            } else {
+                                System.out.println("Número de Identificación inválido. Compruébelo y vuelva a insertarlo");
+                            }
+                        }
+
+
                         System.out.println("Escriba la fecha de alta. Pulsa enter para poner la fecha y hora actual");
                         //FIXME formato fecha de alta. comprobar en el service el formato de la fecha de alta
                         scanner = new Scanner(System.in);
                         String fechaAlta = scanner.nextLine();
-                        clienteInsertar.setFechaAltaCliente(fechaAlta.equals(Character.MIN_VALUE) ? LocalDateTime.parse(fechaAlta) : LocalDateTime.now());
+                        clienteInsertar.setFechaAltaCliente("".equals(fechaAlta) ? LocalDateTime.now() : LocalDateTime.parse(fechaAlta));
                         System.out.println("Escriba la cuota máxima de pago. Dato no requerido, pulsa enter para saltar");
                         System.out.println("Formato: número separado en sus decimales por un punto. Ejemplo: 10.90");
                         scanner = new Scanner(System.in);
                         String cuota = scanner.nextLine();
-                        clienteInsertar.setCuotaMaximaPago(cuota.equals(Character.MIN_VALUE) ? new BigDecimal(cuota) : null);
+                        clienteInsertar.setCuotaMaximaPago("".equals(cuota) ? null : new BigDecimal(cuota));
 
                         this.clearConsola();
                         this.imprimirMenu();
@@ -175,6 +193,25 @@ public class Consola {
 
                         break;
                     case OPCIONBORRARCLIENTE:
+                        System.out.println("Escriba el Número de Identificación del cliente que quiere borrar");
+                        boolean validacionIdentificacionBorrar = false;
+                        String numIdentificacionBorrar;
+                        while(validacionIdentificacionBorrar == false) {
+                            numIdentificacionBorrar = scanner.next();
+                            if(clienteControlador.validarNumeroDocumentacion(numIdentificacionBorrar)) {
+                                //Es válido
+                                validacionIdentificacionBorrar = true;
+                                try {
+                                    clienteControlador.eliminarCliente(numIdentificacionBorrar);
+                                    System.out.println("Cliente con número de identificación " + numIdentificacionBorrar + " ha sido borrado.");
+                                } catch(NoResultException e) {
+                                    System.out.println("No se ha encontrado un cliente en la base de datos con ese número de identificación");
+                                }
+
+                            } else {
+                                System.out.println(ANSI_GREEN_BACKGROUND + "Número de Identificación inválido. Compruébelo y vuelva a insertarlo" + ANSI_RESET);
+                            }
+                        }
                         break;
                     case OPCIONEDITARCLIENTE:
                         break;
@@ -214,14 +251,37 @@ public class Consola {
     }
 
     public void imprimirListaClientes(List<Cliente> lista) {
+        Scanner scanner;
         int numCliente = 1;
-        System.out.println(ANSI_BLUE +"------------------");
-        for(Cliente i : lista) {
-            System.out.println("Cliente número " + numCliente + ":");
-            System.out.println(i.getMetadatos());
-            numCliente++;
+        //Comprobamos las páginas que se pueden imprimir
+        int paginas = lista.size()/NUMERO_ELEMENTOS_PAGINA;
+        if(lista.size()%NUMERO_ELEMENTOS_PAGINA != 0) {
+            paginas++;
         }
-        System.out.println("------------------" + ANSI_RESET);
+
+        this.clearConsola();
+        System.out.println(ANSI_BLUE +"------------------");
+        for(int i = 0; i < paginas; i++) { //vamos por cada página
+            for(int j = 0; j < NUMERO_ELEMENTOS_PAGINA; j++) { //imprimimos los datos de los clientes si existen
+                int indice = (i * NUMERO_ELEMENTOS_PAGINA) + j;
+                if(indice >= 0 && indice < lista.size()) {
+                    System.out.println("Cliente número " + numCliente + ":");
+                    System.out.println(lista.get(indice).getMetadatos());
+                    numCliente++;
+                    System.out.println("------------------");
+                }
+            }
+            if(i != paginas-1) {
+                String linea = "texto";
+                while(!("".equals(linea))) {
+                    this.clearConsola();
+                    System.out.println("Para pasar de página pulse enter");
+                    scanner = new Scanner(System.in);
+                    linea = scanner.nextLine();
+                }
+            }
+        }
+        System.out.println("Terminada la lista"  + ANSI_RESET);
     }
 
     /**

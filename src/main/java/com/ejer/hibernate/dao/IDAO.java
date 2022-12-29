@@ -21,12 +21,6 @@ public interface IDAO<T, UUID> {
      */
     void insertarElemento(T elemento);
 
-//    /**
-//     * Elimina el objeto 'elemento' en la base de datos
-//     * @param elemento
-//     */
-//    void eliminarElemento(T elemento);
-
     /**
      * Encuentra una fila en la base de datos que tenga el uuid argumentado
      * @param uuid

@@ -64,7 +64,7 @@ public class ClienteService implements IService<Cliente> {
      * @return true si es válido
      *         false si no es válido
      */
-    public static boolean validarNumeroDocumentacion(final String numeroIdentificacion) {
+    public boolean validarNumeroDocumentacion(final String numeroIdentificacion) {
         if(LOGGER.isDebugEnabled()) {
             LOGGER.debug("Clase ClienteControlador Método validarNumeroDocumentacion(final String numeroIdentificacion): se va a comprobar {}", numeroIdentificacion);
         }

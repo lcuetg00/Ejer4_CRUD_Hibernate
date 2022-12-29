@@ -1,5 +1,7 @@
 package com.ejer.service;
 
+import com.ejer.hibernate.entity.Cliente;
+
 import java.util.List;
 
 /**
@@ -20,5 +22,25 @@ public interface IService<T> {
      */
     void insertarElemento(T elemento);
 
+    void eliminarCliente(final String numIdentificacion);
+
+    void insertarElemento(final Cliente cliente);
+
+    Cliente findCliente(final String numIdentificacion);
+
+    void updateCliente(final Cliente cliente);
+
+    /**
+     * Devuelve si el número de identificación es válido o no lo es
+     * @param numeroIdentificacion
+     * @return
+     */
+    boolean validarNumeroDocumentacion(final String numeroIdentificacion);
+
+    /**
+     * Recoge una lista de elementos ordenadas por su número de identificación
+     * @return
+     */
+    List getListaElementosOrdenadorNumeroIdentificacion();
 
 }

@@ -9,6 +9,7 @@ import java.util.List;
  * @author Luis Cueto
  */
 public interface IClienteDAO<T, UUID> extends IDAO<T, UUID> {
+
     /**
      * Devuelve una lista de elementos ordenador por el número de indentificación del cliente
      * @return
@@ -20,4 +21,5 @@ public interface IClienteDAO<T, UUID> extends IDAO<T, UUID> {
      * @return
      */
     T findCliente(String numeroIdentificacion);
+
 }

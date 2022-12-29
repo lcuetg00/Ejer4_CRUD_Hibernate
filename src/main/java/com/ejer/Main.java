@@ -13,7 +13,7 @@ public class Main {
             consola.iniciarConsola();
             ConexionBaseDatos.getInstance().cerrarConexion();
         } catch(SQLGrammarException e) {
-            //Error en la base de datos
+            System.out.println("No se ha podido establecer la conexión con la base de datos. Saliendo del programa");
         }
 
     }

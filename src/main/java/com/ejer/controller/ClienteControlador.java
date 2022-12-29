@@ -13,7 +13,7 @@ import java.util.List;
  * Implementa métodos para comunicarse con ClienteService
  * @author Luis Cueto
  */
-public class ClienteControlador {
+public class ClienteControlador implements IClienteControlador {
 
     /**
      * Constructor que inicializa una isntancia de ClienteService
@@ -31,6 +31,10 @@ public class ClienteControlador {
      * Logger para la clase ClienteControlador
      */
     static private final Logger LOGGER = LoggerFactory.getLogger(ClienteControlador.class);
+
+    public boolean validarNumeroDocumentacion(final String numeroIdentificacion) {
+        return clienteService.validarNumeroDocumentacion(numeroIdentificacion);
+    }
 
     /**
      * Llama a ClienteService para recoger una lista con todos las entidades de tipo Cliente en la base de datos

@@ -1,0 +1,16 @@
+04:58:19.248 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Creada instancia ConexionBaseDatos
+04:58:19.249 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método getInstance(): se ha devuelto la instacia de esta clase
+04:58:19.317 [main] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: persistencia]
+04:58:19.354 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {[WORKING]}
+04:58:19.449 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+04:58:20.589 [main] WARN  org.hibernate.orm.connections.pooling - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+04:58:20.591 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001005: using driver [com.p6spy.engine.spy.P6SpyDriver] at URL [jdbc:p6spy:mysql://localhost/agenda?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC]
+04:58:20.591 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001001: Connection properties: {user=root, password=****}
+04:58:20.591 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001003: Autocommit mode: false
+04:58:20.592 [main] INFO  org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20 (min=1)
+04:58:21.097 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+04:58:21.241 [main] WARN  org.hibernate.mapping.RootClass - HHH000038: Composite-id class does not override equals(): com.ejer.hibernate.entity.Registrado
+04:58:21.241 [main] WARN  org.hibernate.mapping.RootClass - HHH000039: Composite-id class does not override hashCode(): com.ejer.hibernate.entity.Registrado
+04:58:21.514 [main] INFO  org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+04:58:21.516 [main] DEBUG com.ejer.hibernate.conexion.ConexionBaseDatos - Clase ConexionBaseDatos Método crearConexion(): Creado EntityManagerFactory
+04:58:21.516 [main] INFO  com.ejer.hibernate.conexion.ConexionBaseDatos - Abierta conexión con la base de datos
