@@ -1,11 +1,12 @@
 package com.ejer.hibernate.dao;
 
-import com.ejer.hibernate.entity.Cliente;
-
 import java.util.List;
 
 /**
- * Interfaz para
+ * Interfaz para implementación de métodos relacionados con las clases DAO para las entidades Cliente
+ * Implementa IDAO
+ * @param <T> la clase entidad
+ * @param <UUID> el tipo del identificador que utiliza la clase
  * @author Luis Cueto
  */
 public interface IClienteDAO<T, UUID> extends IDAO<T, UUID> {

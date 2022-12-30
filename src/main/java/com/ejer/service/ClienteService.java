@@ -15,7 +15,7 @@ import java.util.NoSuchElementException;
  * Se comunica con ClienteDao para realizar operaciones con la base de datos
  * @author Luis Cueto
  */
-public class ClienteService implements IService<Cliente> {
+public class ClienteService implements IClienteService<Cliente> {
 
     /**
      * Constructor que inicializa una isntancia de ClienteDao
@@ -32,17 +32,17 @@ public class ClienteService implements IService<Cliente> {
     /**
      * Patrón que siguen los NIE: números más una letra final
      */
-    private static final String REGEX_NIE = "[0-9]++[A-Za-z]";
+    private static final String REGEX_NIF = "[0-9]++[A-Za-z]";
 
     /**
      * Patrón que siguen los NIF: Letra X o T seguido de número y una letra final
      */
-    private static final String REGEX_NIF = "[XYZxyz][0-9]++[A-Za-z]";
+    private static final String REGEX_NIE = "[XYZxyz][0-9]++[A-Za-z]";
 
     /**
      * Patrón que siguen los CIF: Letra seguida de números y finalmente puede acabar en una letra o en un número
      */
-    private static final String REGEX_CIF = "[A-Za-z][0-9]++[A-Za-z_0-9]";
+    private static final String REGEX_CIF = "[A-Za-z][0-9]++[A-Za-z_0-9]?";
 
     /**
      * Lista de letras que utilizan los NIE en cada posición
@@ -66,24 +66,24 @@ public class ClienteService implements IService<Cliente> {
      */
     public boolean validarNumeroDocumentacion(final String numeroIdentificacion) {
         if(LOGGER.isDebugEnabled()) {
-            LOGGER.debug("Clase ClienteControlador Método validarNumeroDocumentacion(final String numeroIdentificacion): se va a comprobar {}", numeroIdentificacion);
+            LOGGER.debug("Clase ClienteService Método validarNumeroDocumentacion(final String numeroIdentificacion): se va a comprobar {}", numeroIdentificacion);
         }
         if(LOGGER.isInfoEnabled()) {
             LOGGER.info("Se va a comprobar el tipo de Número de Identificación");
         }
         if(numeroIdentificacion == null) {
             if(LOGGER.isErrorEnabled()) {
-                LOGGER.error("Clase ClienteControlador Método validarNumeroDocumentacion(final String numeroIdentificacion): el parámetro numeroIdentificacion es null");
+                LOGGER.error("Clase ClienteService Método validarNumeroDocumentacion(final String numeroIdentificacion): el parámetro numeroIdentificacion es null");
             }
             throw new InvalidParameterException();
         }
         boolean esValido = false;
 
-        if(numeroIdentificacion.matches(REGEX_NIE)) {
-            esValido = ClienteService.validarNie(numeroIdentificacion);
-        }
         if(numeroIdentificacion.matches(REGEX_NIF)) {
             esValido = ClienteService.validarNif(numeroIdentificacion);
+        }
+        if(numeroIdentificacion.matches(REGEX_NIE)) {
+            esValido = ClienteService.validarNie(numeroIdentificacion);
         }
         if(numeroIdentificacion.matches(REGEX_CIF)) {
             esValido = ClienteService.validarCif(numeroIdentificacion);
@@ -98,9 +98,9 @@ public class ClienteService implements IService<Cliente> {
      * @return true si la letra corresponde con la parte numérica
      *         false si no corresponden
      */
-    private static boolean validarNie(final String nie) {
+    private static boolean validarNif(final String nie) {
         if(LOGGER.isDebugEnabled()) {
-            LOGGER.debug("Clase ClienteService Método validarNie(final String): se va a comprobar el nie {}", nie);
+            LOGGER.debug("Clase ClienteService Método validarNif(final String): se va a comprobar el nie {}", nie);
         }
         if(LOGGER.isInfoEnabled()) {
             LOGGER.info("El número de identificación es un NIE, comprobando que sea correcto");
@@ -121,15 +121,15 @@ public class ClienteService implements IService<Cliente> {
      * @return true si
      *         false si
      */
-    private static boolean validarNif(final String nif) {
+    private static boolean validarNie(final String nie) {
         if(LOGGER.isDebugEnabled()) {
-            LOGGER.debug("Clase ClienteService Método validarNif(final String): se va a comprobar el nie {}", nif);
+            LOGGER.debug("Clase ClienteService Método validarNif(final String): se va a comprobar el nie {}", nie);
         }
         if(LOGGER.isInfoEnabled()) {
             LOGGER.info("El número de identificación es un NIF, comprobando que sea correcto");
         }
 
-        //TODO terminar validacion nif
+        //TODO terminar validacion nie
 
         return true;
     }
@@ -194,7 +194,7 @@ public class ClienteService implements IService<Cliente> {
      * @throws NoSuchElementException Si no encuentra al elemento en la base de datos
      * @throws InvalidParameterException Si el Número de Identificación del cliente no es válido
      */
-    public void eliminarCliente(final String numIdentificacion) throws NoSuchElementException, InvalidParameterException {
+    public void eliminarElemento(final String numIdentificacion) throws NoSuchElementException, InvalidParameterException {
         if(this.validarNumeroDocumentacion(numIdentificacion)) {
             String numIdentificacionFormateado = formatearNumeroIdentificacion(numIdentificacion);
             Cliente clienteEliminar = clienteDao.findCliente(numIdentificacionFormateado);
@@ -239,7 +239,7 @@ public class ClienteService implements IService<Cliente> {
      * @throws InvalidParameterException Si numIdentificacion es inválido
      *                                   Si el cliente argumentado es null
      */
-    public Cliente findCliente(final String numIdentificacion) throws InvalidParameterException {
+    public Cliente findElemento(final String numIdentificacion) throws InvalidParameterException {
         if(numIdentificacion == null) {
             throw new InvalidParameterException();
         }
@@ -258,7 +258,7 @@ public class ClienteService implements IService<Cliente> {
      * Comprueba que el Número de Indetificación del cliente sea válido utilizando {@link ClienteService#validarNumeroDocumentacion(String)}
      * @param cliente
      */
-    public void updateCliente(final Cliente cliente) throws InvalidParameterException {
+    public void updateElemento(final Cliente cliente) throws InvalidParameterException {
         if(cliente == null) {
             throw new InvalidParameterException();
         }

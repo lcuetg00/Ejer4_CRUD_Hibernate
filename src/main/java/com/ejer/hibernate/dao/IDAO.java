@@ -3,7 +3,7 @@ package com.ejer.hibernate.dao;
 import java.util.List;
 
 /**
- * Interfaz con métodos básicos para acceder a la base de datos
+ * Interfaz con métodos básicos para acceder a la base de datos que utilizarán las clases DAO
  * @param <T>
  * @author Luis Cueto
  */
@@ -34,9 +34,4 @@ public interface IDAO<T, UUID> {
      */
     void delete(UUID uuid);
 
-    /**
-     * Devuelve el número de filas de la base de datos
-     * @return número de filas en la base de datos
-     */
-    int count();
 }

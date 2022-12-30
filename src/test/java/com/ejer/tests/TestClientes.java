@@ -12,34 +12,40 @@ import org.junit.jupiter.api.Test;
 
 
 class TestClientes {
-
+    ClienteControlador conCli;
 
     @BeforeEach
     void setUp() {
-        ClienteControlador conCli = new ClienteControlador();
-
-    }
-
-    @Test
-    @DisplayName("Test de validación de NIE")
-    void testValidarNIE() {
-        String nie = "84487226S";
-        //assertTrue(ClienteService.validarNumeroDocumentacion(nie));
+         conCli = new ClienteControlador();
 
     }
 
     @Test
     @DisplayName("Test de validación de NIF")
     void testValidarNIF() {
-        String nif = "Z7195000F";
-        //ClienteService.validarNumeroDocumentacion(nif);
+        String nif = "84487226S";
+        assertTrue(conCli.validarNumeroDocumentacion(nif));
+
+        String nifCorto = "2250367R";
+        assertTrue(conCli.validarNumeroDocumentacion(nifCorto));
+
+        String nifMinuscula = "66325628e";
+        assertTrue(conCli.validarNumeroDocumentacion(nifMinuscula));
+
+    }
+
+    @Test
+    @DisplayName("Test de validación de NIE")
+    void testValidarNIE() {
+        String nie = "Z7195000F";
+        assertTrue(conCli.validarNumeroDocumentacion(nie));
 
     }
 
     @Test
     @DisplayName("Test de validación de CIF")
     void testValidarCIF() {
-        String cif = "";
-        //ClienteService.validarNumeroDocumentacion(cif);
+        String cif = "F08255259";
+        assertTrue(conCli.validarNumeroDocumentacion(cif));
     }
 }

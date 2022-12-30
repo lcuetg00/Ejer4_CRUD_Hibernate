@@ -1,11 +1,10 @@
 package com.ejer.service;
 
-import com.ejer.hibernate.entity.Cliente;
-
 import java.util.List;
 
 /**
- * Interfaz para
+ * Interfaz con métodos básicos para las clases Service
+ * @param <T>
  * @author Luis Cueto
  */
 public interface IService<T> {
@@ -20,27 +19,14 @@ public interface IService<T> {
      * Inserta el objeto 'elemento' en la base de datos
      * @param elemento
      */
-    void insertarElemento(T elemento);
+    void insertarElemento(final T elemento);
 
-    void eliminarCliente(final String numIdentificacion);
+    void eliminarElemento(final String numIdentificacion);
 
-    void insertarElemento(final Cliente cliente);
+    T findElemento(final String numIdentificacion);
 
-    Cliente findCliente(final String numIdentificacion);
+    void updateElemento(final T cliente);
 
-    void updateCliente(final Cliente cliente);
 
-    /**
-     * Devuelve si el número de identificación es válido o no lo es
-     * @param numeroIdentificacion
-     * @return
-     */
-    boolean validarNumeroDocumentacion(final String numeroIdentificacion);
-
-    /**
-     * Recoge una lista de elementos ordenadas por su número de identificación
-     * @return
-     */
-    List getListaElementosOrdenadorNumeroIdentificacion();
 
 }

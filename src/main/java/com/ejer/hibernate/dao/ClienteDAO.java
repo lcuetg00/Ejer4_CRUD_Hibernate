@@ -188,10 +188,6 @@ public class ClienteDAO implements IClienteDAO<Cliente, Integer> {
         }
     }
 
-    public int count() {
-        return 0;
-    }
-
     public void updateElemento(final Cliente cliente) {
         if (cliente == null) {
             throw new IllegalArgumentException();

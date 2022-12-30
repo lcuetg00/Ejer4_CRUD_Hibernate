@@ -13,7 +13,7 @@ import java.util.List;
  * Implementa métodos para comunicarse con ClienteService
  * @author Luis Cueto
  */
-public class ClienteControlador implements IClienteControlador {
+public class ClienteControlador implements IClienteControlador<Cliente> {
 
     /**
      * Constructor que inicializa una isntancia de ClienteService
@@ -60,8 +60,9 @@ public class ClienteControlador implements IClienteControlador {
      * @throws InvalidParameterException si el cliente argumentado es null
      * @param cliente
      */
-    public void insertarCliente(final Cliente cliente) {
+    public void insertarElemento(final Cliente cliente) {
         if(cliente == null) {
+            LOGGER.error("Clase ClienteControlador: insertarElemento() el cliente argumentado es null");
             throw new InvalidParameterException();
         }
         clienteService.insertarElemento(cliente);
@@ -69,39 +70,42 @@ public class ClienteControlador implements IClienteControlador {
 
     /**
      * Llama a ClienteService para eliminar Cliente por su número de identificación
-     * {@link ClienteService#eliminarCliente(String)}
+     * {@link ClienteService#eliminarElemento(String)}
      * @param numeroIdentificacion
      */
-    public void eliminarCliente(final String numeroIdentificacion) {
+    public void eliminarElemento(final String numeroIdentificacion) {
         if(numeroIdentificacion == null) {
+            LOGGER.error("Clase ClienteControlador: eliminarElemento() el numeroIdentifiacion argumentado es null");
             throw new InvalidParameterException();
         }
-        clienteService.eliminarCliente(numeroIdentificacion);
+        clienteService.eliminarElemento(numeroIdentificacion);
     }
 
     /**
      * Llama a ClienteService para recoger un Cliente que tenga el mismo número de identificación
-     * {@link ClienteService#findCliente(String)}
+     * {@link ClienteService#findElemento(String)}
      * @param numeroIdentificacion
      * @throws InvalidParameterException si numeroIdentificacion es null
      */
     public Cliente findCliente(final String numeroIdentificacion) {
         if(numeroIdentificacion == null) {
+            LOGGER.error("Clase ClienteControlador: findElemento() el numeroIdentifiacion argumentado es null");
             throw new InvalidParameterException();
         }
-        return clienteService.findCliente(numeroIdentificacion);
+        return clienteService.findElemento(numeroIdentificacion);
     }
 
     /**
      * Llama a ClienteService para recoger un Cliente que tenga el mismo número de identificación
-     * {@link ClienteService#findCliente(String)}
+     * {@link ClienteService#findElemento(String)}
      * @param cliente
      * @throws InvalidParameterException si el cliente argumentado es null
      */
-    public void updateCliente(final Cliente cliente) {
+    public void updateElemento(final Cliente cliente) {
         if(cliente == null) {
+            LOGGER.error("Clase ClienteControlador: updateElemento() el cliente argumentado es null");
             throw new InvalidParameterException();
         }
-        clienteService.updateCliente(cliente);
+        clienteService.updateElemento(cliente);
     }
 }
