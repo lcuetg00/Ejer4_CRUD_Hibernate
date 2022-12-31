@@ -2,7 +2,6 @@ package com.ejer.vista;
 import com.ejer.controller.ClienteControlador;
 import com.ejer.hibernate.entity.Cliente;
 import com.ejer.hibernate.entity.EnumClienteTipo;
-import com.ejer.service.ClienteService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -93,8 +92,8 @@ public class Consola {
     public static final String RETORNO_CARRO = System.getProperty("line.separator");
 
     //Variables de fechas:
-    private static final String FORMATOfECHA = "dd-MM-yyyy HH:mm";
-    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(FORMATOfECHA);
+    private static final String FORMATOFECHA = "dd-MM-yyyy HH:mm";
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(FORMATOFECHA);
 
 
     /**
@@ -122,6 +121,20 @@ public class Consola {
         return nombre;
     }
 
+    public String consolaPedirPrimerApellido() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Escriba el primer apellido del cliente a insertar");
+        String apellido1 = scanner.next().trim();
+        return apellido1;
+    }
+
+    public String consolaPedirSegundoApellido() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Escriba el segundo apellido del cliente a insertar. Dato no requerido, escriba enter para saltar.");
+        String apellido2 = scanner.nextLine().trim();
+        return apellido2;
+    }
+
     public String consolaPedirNumIdentificacion() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Escriba el Número de Identificación");
@@ -146,11 +159,10 @@ public class Consola {
         Scanner scanner = new Scanner(System.in);
         boolean exito = false;
         String fechaAlta = null;
-        System.out.println("Escriba la fecha de alta. Pulsa enter para poner la fecha y hora actual");
+        System.out.println("Escriba la fecha de alta de la siguiente forma: " + FORMATOFECHA  + RETORNO_CARRO + "Pulsa enter para poner la fecha y hora actual");
         while(exito == false) {
-            scanner = new Scanner(System.in);
             fechaAlta = scanner.nextLine().trim();
-            if(ESC.equalsIgnoreCase(fechaAlta)) {
+            if(ESC.equalsIgnoreCase(fechaAlta) || "".equals(fechaAlta)) {
                 exito = true;
             }
             if(exito == false) {
@@ -167,6 +179,49 @@ public class Consola {
         return fechaAlta;
     }
 
+    public String consolaPedirCuotaMaxima() {
+        Scanner scanner = new Scanner(System.in);
+        boolean exito = false;
+        String cuotaMaxima = null;
+        System.out.println("Escriba la cuota máxima de pago. Valor comprendido entre 10 y 10000. Dato no requerido, pulsa enter para saltar");
+        System.out.println("Formato: número separado en sus decimales por un punto. Ejemplo: 10.90");
+        while(exito == false) {
+            cuotaMaxima = scanner.nextLine().trim();
+            if(ESC.equalsIgnoreCase(cuotaMaxima) || "".equals(cuotaMaxima)) {
+                exito = true;
+            }
+            if(exito == false) {
+                try {
+                    BigDecimal cuotaMax = new BigDecimal(cuotaMaxima);
+
+                    if((cuotaMax.compareTo(BigDecimal.TEN) == -1) ||
+                    (cuotaMax.compareTo(new BigDecimal("10000")) == 1)) {
+                        System.out.println("Cuota máxima incorrecta. Introduzca un valor decimal entre 10 y 10000");
+                    } else {
+                        exito = true;
+                    }
+                } catch (NumberFormatException e) {
+                    //no es una número decimal con el formato correcto
+                    System.out.println("No ha escrito un número decimal en el formato dado. Vuelva a escribir un valor.");
+                }
+            }
+        }
+
+        return cuotaMaxima;
+    }
+
+    public boolean consolaPreguntarSiCambiosSonCorrectos(String parametro, String antiguo, String nuevo) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Se cambiará el parámetro " + parametro + " " + antiguo + " por el nuevo " + nuevo);
+        System.out.println("Si quiere continuar, pulse enter. Si no, escriba N");
+        String opcion = scanner.nextLine().trim();
+        if("".equals(opcion)) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
 
     /**
      * Inicia la interfaz de la consola.
@@ -182,12 +237,13 @@ public class Consola {
 
         while (opcion != OPCIONSALIR) {
             try {
-                System.out.println(ANSI_GREEN + "Escriba la opción que quiere realizar:" + ANSI_RESET);
+                System.out.println(ANSI_GREEN + "Escriba la opción que quiere realizar." + ANSI_RESET);
                 //Leemos la operación que quiere realizar el usuario
                 opcion = scanner.nextInt();
 
                 switch (opcion) {
                     case OPCIONANYADIRCLIENTE:
+                        System.out.println("Seleccionado añadir cliente. Si desea salir de la operación, escriba " + ESC);
                         if(LOGGER.isInfoEnabled()) {
                             LOGGER.info("Se ha seleccionado la opción de insertar cliente");
                         }
@@ -195,8 +251,7 @@ public class Consola {
                         Cliente clienteInsertar = new Cliente();
                         clienteInsertar.setEnumCliente(EnumClienteTipo.SOCIO);
                         if(salir == false) {
-                            System.out.println("Escriba el nombre del cliente a insertar");
-                            String nombre = scanner.next().trim();
+                            String nombre = consolaPedirNombre();
                             if(ESC.equalsIgnoreCase(nombre)) {
                                 salir = true;
                             } else {
@@ -208,8 +263,7 @@ public class Consola {
                         }
 
                         if(salir == false) {
-                            System.out.println("Escriba el primer apellido del cliente a insertar");
-                            String apellido1 = scanner.next().trim();
+                            String apellido1 = this.consolaPedirPrimerApellido();
                             if(ESC.equalsIgnoreCase(apellido1)) {
                                 salir = true;
                             } else {
@@ -221,9 +275,7 @@ public class Consola {
                         }
 
                         if(salir == false) {
-                            System.out.println("Escriba el segundo apellido. Dato no requerido, pulsa enter para saltar");
-                            scanner = new Scanner(System.in);
-                            String apellido2 = scanner.nextLine().trim();
+                            String apellido2 = this.consolaPedirSegundoApellido();
                             if(ESC.equalsIgnoreCase(apellido2)) {
                                 salir = true;
                             } else {
@@ -235,9 +287,7 @@ public class Consola {
                         }
 
                         if(salir == false) {
-
                             String numIdentificacion = this.consolaPedirNumIdentificacion();
-
                             if(ESC.equalsIgnoreCase(numIdentificacion)) {
                                 salir = true;
                             } else {
@@ -253,7 +303,6 @@ public class Consola {
                             if(ESC.equalsIgnoreCase(fechaAlta)) {
                                 salir = true;
                             } else {
-                                //DateTimeParseException
                                 clienteInsertar.setFechaAltaCliente("".equals(fechaAlta) ? LocalDateTime.now() : LocalDateTime.parse(fechaAlta, FORMATTER));
                                 if(LOGGER.isInfoEnabled()) {
                                     LOGGER.info("Se ha insertado la fecha de alta");
@@ -262,14 +311,10 @@ public class Consola {
                         }
 
                         if(salir == false) {
-                            System.out.println("Escriba la cuota máxima de pago. Dato no requerido, pulsa enter para saltar");
-                            System.out.println("Formato: número separado en sus decimales por un punto. Ejemplo: 10.90");
-                            scanner = new Scanner(System.in);
-                            String cuota = scanner.nextLine().trim();
+                            String cuota = this.consolaPedirCuotaMaxima();
                             if(ESC.equalsIgnoreCase(cuota)) {
                                 salir = true;
                             } else {
-                                //FIXME comprobar formato del decimal
                                 clienteInsertar.setCuotaMaximaPago("".equals(cuota) ? null : new BigDecimal(cuota));
                             }
                         }
@@ -297,10 +342,11 @@ public class Consola {
                         break;
 
                     case OPCIONCONSULTARCLIENTE:
+                        System.out.println("Seleccionado consultar cliente. Si desea salir de la operación, escriba " + ESC);
                         boolean finalizado = false;
                         while(finalizado == false) {
                             System.out.println("Escriba el Número de Identificación (DNI, NIF, CIF) del cliente que quiere buscar");
-                            String numeroIdentificacion = scanner.next().trim();
+                            String numeroIdentificacion = this.consolaPedirNumIdentificacion();
                             if(ESC.equalsIgnoreCase(numeroIdentificacion)) {
                                 finalizado = true;
                                 this.clearConsola();
@@ -329,29 +375,91 @@ public class Consola {
 
                         break;
                     case OPCIONBORRARCLIENTE:
-                        System.out.println("Escriba el Número de Identificación del cliente que quiere borrar");
+                        System.out.println("Seleccionado borrar cliente. Si desea salir de la operación, escriba " + ESC);
                         boolean validacionIdentificacionBorrar = false;
-                        String numIdentificacionBorrar;
-                        while(validacionIdentificacionBorrar == false) {
-                            numIdentificacionBorrar = scanner.next().trim();
-                            if(clienteControlador.validarNumeroDocumentacion(numIdentificacionBorrar)) {
-                                //Es válido
-                                validacionIdentificacionBorrar = true;
-                                try {
-                                    clienteControlador.eliminarElemento(numIdentificacionBorrar);
-                                    System.out.println("Cliente con número de identificación " + numIdentificacionBorrar + " ha sido borrado.");
-                                } catch(NoResultException e) {
-                                    System.out.println("No se ha encontrado un cliente en la base de datos con ese número de identificación");
-                                }
+                        String numIdentificacionBorrar = this.consolaPedirNumIdentificacion();
 
-                            } else {
-                                System.out.println(ANSI_GREEN_BACKGROUND + "Número de Identificación inválido. Compruébelo y vuelva a insertarlo" + ANSI_RESET);
+                        if(ESC.equalsIgnoreCase(numIdentificacionBorrar)) {
+                            finalizado = true;
+                            this.clearConsola();
+                            this.imprimirMenu();
+                            System.out.println("Se ha salido al menú principal");
+                        }else {
+                            try {
+                                clienteControlador.eliminarElemento(numIdentificacionBorrar);
+                                this.clearConsola();
+                                this.imprimirMenu();
+                                System.out.println("Cliente con número de identificación " + numIdentificacionBorrar + " ha sido borrado.");
+                            } catch(NoResultException e) {
+                                this.clearConsola();
+                                this.imprimirMenu();
+                                System.out.println("No se ha encontrado un cliente en la base de datos con ese número de identificación");
                             }
                         }
                         break;
                     case OPCIONEDITARCLIENTE:
+                        Cliente clienteConsulta = null;
+                        System.out.println("Seleccionado editar cliente. Si desea salir de la operación, escriba " + ESC);
+                        boolean finalizadoEncontrarCliente = false;
+                        while(finalizadoEncontrarCliente == false) {
+                            System.out.println("Escriba el Número de Identificación (DNI, NIF, CIF) del cliente que quiere buscar");
+                            String numeroIdentificacion = this.consolaPedirNumIdentificacion();
+                            if(ESC.equalsIgnoreCase(numeroIdentificacion)) {
+                                finalizadoEncontrarCliente = true;
+                                this.clearConsola();
+                                this.imprimirMenu();
+                                System.out.println("Se ha salido al menú principal");
+                            }else {
+                                try {
+                                    clienteConsulta = clienteControlador.findCliente(numeroIdentificacion);
+                                    this.clearConsola();
+                                    this.imprimirMenu();
+
+                                    finalizadoEncontrarCliente = true;
+                                } catch (NoResultException e) {
+                                    this.clearConsola();
+                                    this.imprimirMenu();
+                                    System.out.println(ANSI_YELLOW_BACKGROUND + "No existe el cliente introducido en la base de datos" + ANSI_RESET);
+                                    finalizadoEncontrarCliente = true;
+                                } catch (InvalidParameterException e) {
+                                    System.out.println(ANSI_YELLOW_BACKGROUND + "El número de identificación que ha introducido no es válido. Compruebe que es correcto" + ANSI_RESET);
+                                }
+                            }
+                        }
+
+                        boolean terminadoActualizar = false;
+                        int opcionActualizar =-1;
+                        while(terminadoActualizar == false) {
+                            this.imprimirOpcionesEditarCliente(clienteConsulta);
+                            System.out.println("Seleccione la opción que desee modificar");
+
+                            try {
+                                opcionActualizar = scanner.nextInt();
+
+
+                                switch (opcionActualizar) {
+                                    case 0:
+                                        break;
+                                    case 1:
+                                        String nuevoNombre = this.consolaPedirNombre();
+                                        System.out.println("Se cambiará el nombre antiguo " +clienteConsulta.getNombreCliente() + " por el nuevo " + nuevoNombre);
+
+                                        clienteConsulta.setNombreCliente(nuevoNombre);
+                                        break;
+                                }
+
+                                clienteControlador.updateElemento(clienteConsulta);
+                            } catch (InputMismatchException e) {
+                                System.out.println(ANSI_YELLOW_BACKGROUND + "Opción tecleada incorrecta. Seleccione una de las opciones disponibles" + ANSI_RESET);
+                                scanner.nextLine();
+
+                            }
+                        }
+
+
                         break;
                     case OPCIONLISTARCLIENTES:
+                        System.out.println("Seleccionado listar clientes. Si desea salir de la operación, escriba " + ESC);
                         this.clearConsola();
                         this.imprimirMenu();
                         List<Cliente> lista = clienteControlador.getListaElementosOrdenadorNumeroIdentificacion();
@@ -364,6 +472,7 @@ public class Consola {
                         }
 
                         break;
+
                     case OPCIONSALIR:
                         break;
                     default:
@@ -377,7 +486,7 @@ public class Consola {
             } catch (InputMismatchException e) {
                 System.out.println(ANSI_YELLOW_BACKGROUND + "Opción tecleada incorrecta. Seleccione una de las opciones disponibles" + ANSI_RESET);
                 //clear consola
-                this.imprimirMenu();
+                //this.imprimirMenu();
                 scanner.nextLine();
 
             } catch (InvalidParameterException e){
@@ -386,6 +495,21 @@ public class Consola {
         }
     }
 
+    public void imprimirOpcionesEditarCliente(Cliente cliente) {
+        if(cliente == null) {
+            throw new InvalidParameterException();
+        }
+        System.out.println(ANSI_BLUE + cliente.getMetadatos() + ANSI_RESET);
+        System.out.println(ANSI_BLUE + "Selecciona qué campo quieres actualizar:");
+        System.out.println("0) Salir (no modificar nada)");
+        System.out.println("1) Nombre");
+        System.out.println("2) Primer Apellido");
+        System.out.println("3) Segundo Apellido");
+        System.out.println("4) Fecha de alta");
+        if (cliente.getEnumCliente() == EnumClienteTipo.REGISTRADO) {
+            System.out.println("5) Cuota Máxima");
+        }
+    }
     public void imprimirListaClientes(List<Cliente> lista) {
         Scanner scanner;
         int numCliente = 1;
