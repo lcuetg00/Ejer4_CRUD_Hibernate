@@ -22,6 +22,17 @@ public class Cliente implements Serializable{
     public Cliente() {
     }
 
+    /**
+     * Constructor para construir un cliente con todos sus atributos.
+     * Si cuotaMaximaPago es null, se le asignará como tipo de cliente EnumClienteTipo.SOCIO
+     * Si cuotaMaximaPago no es null, se le asignará como tipo de cliente EnumClienteTipo.REGISTRADO
+     * @param dni
+     * @param nombre
+     * @param primerApellido
+     * @param segundoApellido
+     * @param fechaAltaCliente
+     * @param cuotaMaximaPago
+     */
     public Cliente(String dni, String nombre, String primerApellido, String segundoApellido, LocalDateTime fechaAltaCliente, BigDecimal cuotaMaximaPago) {
         this.numIdentificacion = dni;
         this.nombreCliente = nombre;
